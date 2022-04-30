@@ -8,6 +8,9 @@ use App\Http\Requests\UpdateInfoRequest;
 
 class InfoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,8 @@ class InfoController extends Controller
      */
     public function index()
     {
-        //
+        $info ="Hello World";
+       return view('info.index',['info'=>$info]);
     }
 
     /**
