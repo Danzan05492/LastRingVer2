@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\Category;
 use App\Http\Requests\StoreInfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 
@@ -17,9 +18,9 @@ class InfoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $info ="Hello World";
-       return view('info.index',['info'=>$info]);
+    {        
+     
+        return view('info.index',['info'=>""]);
     }
 
     /**
