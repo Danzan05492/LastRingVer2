@@ -2,5 +2,10 @@
 -------------- Генерируем модель в ларавель со всем
 https://laravel.com/docs/9.x/eloquent
 
+<<<<<<< Updated upstream
 Работа со slug:
 https://github.com/cviebrock/eloquent-sluggable
+=======
+-------------- Материалы
+Политики: https://laravel.demiart.ru/laravel-policy/
+>>>>>>> Stashed changes
