@@ -49,11 +49,7 @@ class InfoController extends Controller
         //dd($request->all());
         $data=$request->all();
         //работаем с картинкой
-        if ($request->hasFile('thumbnail')){
-            $folder=date('Y-m-d');
-            //не льёт в папку public!
-            $data['thumbnail']=$request->file('thumbnail')->store("images/{$folder}");
-        }
+        $data['thumbnail']=Info::uploadImage($request);        
         //льём в базу
         $info=Info::create($data);
         //Связь с категориями
@@ -69,10 +65,9 @@ class InfoController extends Controller
      */
     public function edit($id)
     {
-
-        
-        
-        return view('admin.infos.edit',['info'=>$info]);
+        $categories=Category::pluck('title','id')->all();       
+        $info=Info::find($id);
+        return view('admin.infos.edit',['categories'=>$categories,'info'=>$info]);
     }
 
     /**
@@ -84,8 +79,20 @@ class InfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        return redirect()->route('categories.index')->with('success','Информация сохранена');
+        $request->validate([
+            'title'=>'required',
+            'content'=>'required',
+            'thumbnail'=>'nullable|image'
+        ]);
+        $info=Info::find($id);
+        $data=$request->all();
+        //работаем с картинкой
+        $data['thumbnail']=Info::uploadImage($request,$info->thumbnail);        
+        //льём в базу
+        $info->update($data);
+        //Связь с категориями
+        $info->categories()->sync($request->categories);
+        return redirect()->route('infos.index')->with('success','Информация сохранена');
     }
 
     /**
