@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,8 @@ Route::get('/dashboard', function () {
 
 //---личный кабинет
 Route::get('/cabinet/info-list', [InfoController::class,'index'])->name('info-list');
-
+Route::group(['prefix'=>'admin'],function(){
+        Route::resource('/categories',CategoryController::class);
+    }
+);
 require __DIR__.'/auth.php';
