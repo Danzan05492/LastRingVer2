@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 class Info extends Model
 {
     use HasFactory;
@@ -22,5 +23,15 @@ class Info extends Model
                 'source' => 'title'
             ]
         ];
+    }
+    public static function uploadImage(Request $request,$imageToDelete=null){
+        if ($request->hasFile('thumbnail')){
+            if ($imageToDelete){
+                Storage::delete($imageToDelete);
+            }
+            $folder=date('Y-m-d');            
+            return $request->file('thumbnail')->store("images/{$folder}");
+        }
+        return null;
     }
 }
