@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Requests\StoreInfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InfoController extends Controller
 {
@@ -103,7 +104,10 @@ class InfoController extends Controller
      */
     public function destroy($id)
     {
-        Info::destroy($id);
+        $info=Info::find($id);
+        //удаляем связанные данные
+        $info->categories()->sync([]);
+        Storage::delete($info->thumbnail);
         return redirect()->route('infos.index')->with('success','Информация Удалена');
     }
 }

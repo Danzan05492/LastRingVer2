@@ -34,4 +34,10 @@ class Info extends Model
         }
         return null;
     }
+    public function getImage(){
+        if(!$this->thumbnail){
+            return asset("no-image.jpg");
+        }
+        return asset($this->thumbnail);
+    }
 }

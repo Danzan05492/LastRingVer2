@@ -38,7 +38,7 @@
                             @endforeach
                         </select>
                         <br><br>
-                        {{$info->thumbnail}}
+                        <img src="{{$info->getImage()}}">
                         <br>
                         <input type="file" name="thumbnail">
                         <br><br>
