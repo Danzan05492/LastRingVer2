@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('info-list')" :active="request()->routeIs('info-list')">
+                    <x-nav-link >
                         {{ __('Список материалов') }}
                     </x-nav-link>
                 </div>
