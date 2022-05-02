@@ -38,7 +38,9 @@
                     <tr style="border-width: 1px;">
                         <td>{{$info->id}} </td>
                     <td>{{$info->title}} </td>
-                    <td></td>
+                    <td>
+                        {{$info->categories->pluck('title')->join(',')}}
+                    </td>
                     <td>{{$info->created_at}} </td>
                     <td>
                     [<a href="{{route('infos.edit',['info'=>$info->id])}}"> Редактировать</a>]<br>
