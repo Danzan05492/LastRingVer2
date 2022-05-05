@@ -19,12 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//---личный кабинет
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-//---личный кабинет
-//Route::get('/cabinet/info-list', [InfoController::class,'index'])->name('info-list');
+//--- круды в ЛК
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::resource('/categories',CategoryController::class);
         Route::resource('/infos',InfoController::class);
