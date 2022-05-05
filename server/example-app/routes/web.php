@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 //---личный кабинет
 //Route::get('/cabinet/info-list', [InfoController::class,'index'])->name('info-list');
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::resource('/categories',CategoryController::class);
         Route::resource('/infos',InfoController::class);
     }
