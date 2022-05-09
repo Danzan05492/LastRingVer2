@@ -30,9 +30,9 @@ mix.styles([
 
 mix.scripts([
     'resources/front/js/jquery.min.js',
-    'resources/front/js/bootstrap.min.js',
-    'resources/front/js/animate.js',
     'resources/front/js/tether.min.js',
+    'resources/front/js/bootstrap.min.js',
+    'resources/front/js/animate.js',    
     'resources/front/js/custom.js',
     
 ],'public/assets/front/js/front.js');
