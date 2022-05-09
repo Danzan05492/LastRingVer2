@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 class Info extends Model
 {
     use HasFactory;
@@ -39,5 +40,8 @@ class Info extends Model
             return asset("no-image.jpg");
         }
         return asset($this->thumbnail);
+    }
+    public function getInfoDate(){
+        return Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->format('d F, Y');
     }
 }

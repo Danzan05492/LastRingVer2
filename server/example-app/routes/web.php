@@ -17,7 +17,8 @@ use App\Http\Controllers\InfoController as PublicInfoController;
 */
 
 Route::get('/', [PublicInfoController::class,'index'])->name('home');
-Route::get('/article',[PublicInfoController::class,'show'])->name('article');
+Route::get('/article/{slug}',[PublicInfoController::class,'show'])->name('article.single');
+Route::get('/category/{slug}',[PublicCategoryController::class,'show'])->name('categories.single');
 
 //---личный кабинет
 Route::get('/dashboard', function () {
