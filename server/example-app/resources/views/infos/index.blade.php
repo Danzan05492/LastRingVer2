@@ -10,13 +10,8 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet"> 
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
-    <link href="css/colors.css" rel="stylesheet">
-    <link href="css/version/marketing.css" rel="stylesheet">
+    <link href="{{asset('assets/front/css/front.css')}}" rel="stylesheet">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -481,12 +476,8 @@
         
     </div><!-- end wrapper -->
 
-    <!-- Core JavaScript
-    ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/animate.js"></script>
-    <script src="js/custom.js"></script>
+   
+    <script src="{{asset('assets/front/js/front.js')}}"></script>
+   
 </body>
 </html>
