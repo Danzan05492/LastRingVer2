@@ -88,7 +88,9 @@ class InfoController extends Controller
         $info=Info::find($id);
         $data=$request->all();
         //работаем с картинкой
-        $data['thumbnail']=Info::uploadImage($request,$info->thumbnail);        
+        if ($file=Info::uploadImage($request,$info->thumbnail)){
+            $data['thumbnail']=$file;        
+        }
         //льём в базу
         $info->update($data);
         //Связь с категориями
@@ -108,6 +110,7 @@ class InfoController extends Controller
         //удаляем связанные данные
         $info->categories()->sync([]);
         Storage::delete($info->thumbnail);
+        $info->delete();
         return redirect()->route('infos.index')->with('success','Информация Удалена');
     }
 }

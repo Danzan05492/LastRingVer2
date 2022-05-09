@@ -81,7 +81,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
+        //Category::destroy($id);
+        $category=Category::find($id);
+        $category->posts()->sync([]);
+        $category->delete();
         return redirect()->route('categories.index')->with('success','Категория Удалена');
     }
 }
