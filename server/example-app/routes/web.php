@@ -17,7 +17,7 @@ use App\Http\Controllers\InfoController as PublicInfoController;
 */
 
 Route::get('/', [PublicInfoController::class,'index'])->name('home');
-Route::get('/info',[PublicInfoController::class,'single'])->name('show');
+Route::get('/article',[PublicInfoController::class,'show'])->name('article');
 
 //---личный кабинет
 Route::get('/dashboard', function () {
