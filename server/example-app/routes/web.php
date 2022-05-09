@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\InfoController as PublicInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,8 @@ use App\Http\Controllers\Admin\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicInfoController::class,'index'])->name('home');
+Route::get('/info',[PublicInfoController::class,'single'])->name('show');
 
 //---личный кабинет
 Route::get('/dashboard', function () {
@@ -30,3 +30,4 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     }
 );
 require __DIR__.'/auth.php';
+
