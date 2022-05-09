@@ -29,7 +29,9 @@
                         <input type="text" name="title" class="@error('title') is-invalid @enderror>" id="title" value="{{$info->title}}">
                         <br><br>
                         <strong>Содержание</strong><br>
-                        <textarea name="content" rows=5 cols=40>{{$info->content}}</textarea>
+                        
+                        <textarea id="editor" name="content" rows=9 cols=40>{{$info->content}}</textarea>
+                        
                         <br><br>
                         <strong>Категории</strong><br>
                         <select name="categories[]" multiple="multiple">

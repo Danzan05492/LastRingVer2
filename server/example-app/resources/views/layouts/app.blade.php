@@ -15,6 +15,10 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <!--WYSWYG-->
+        <script src={{asset('ckeditor5/build/ckeditor.js')}}></script>
+        <script src={{asset('ckfinder/ckfinder.js')}}></script>
+        
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -32,5 +36,12 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        </script>
     </body>
 </html>
