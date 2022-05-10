@@ -31,14 +31,17 @@
                         <div class="blog-box wow fadeIn">
                             <div class="post-media">
                                 <a href="{{route('article.single',['slug'=>$post->slug])}}" title="">
-                                            <img src="{{$post->getImage()}}" alt="" class="img-fluid">
+                                            <img src="{{asset('storage/'.$post->thumbnail)}}" alt="" class="img-fluid">
                                             <div class="hovereffect">
                                                 <span></span>
                                             </div>
+
+
                                             <!-- end hover -->
                                         </a>
                                     </div>
                                     <!-- end media -->
+
                                     <div class="blog-meta big-meta text-center">
                                         <div class="post-sharing">
                                             <ul class="list-inline">
@@ -48,7 +51,8 @@
                                             </ul>
                                         </div><!-- end post-sharing -->
                                         <h4><a href="{{route('article.single',['slug'=>$post->slug])}}" title="">{{ $post->title }}</a></h4>
-                                        <p>{!! $post->content !!}</p>                                
+                                        <p>{!! $post->content !!}</p>
+
                                 <small>{{$post->getInfoDate()}}</small>
                                 <small><i class="fa fa-eye"></i> 2291</small>
                             </div><!-- end meta -->
