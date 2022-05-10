@@ -28,7 +28,7 @@
                         <input type="text" name="title" class="@error('title') is-invalid @enderror>" id="title">
                         <br><br>
                         <strong>Содержание</strong><br>
-                        <textarea name="content" rows=5 cols=40></textarea>
+                        <textarea id="editor" name="content" rows=5 cols=40></textarea>
                         <br><br>
                         <strong>Категории</strong><br>
                         <select name="categories[]" multiple="multiple">
