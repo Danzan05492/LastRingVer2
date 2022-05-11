@@ -68,7 +68,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                
-                                    {{$posts->links()}}
+                                    {{$posts->links('vendor.pagination.default')}}
                                    <!-- <ul class="pagination justify-content-center">
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
