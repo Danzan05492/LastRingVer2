@@ -15,6 +15,9 @@ class InfoController extends Controller
         return view('infos.index',['posts'=>$posts]);
     }
     public function show($slug){
-        return view('infos.show');
+        $info=Info::where('slug',$slug)->firstOrFail();
+        $info->views+=1;
+        $info->save();
+        return view('infos.show',['info'=>$info]);
     }    
 }
