@@ -1,5 +1,5 @@
 @extends('layouts.front.layout')
-@section('title','MainPage')
+@section('title','Главная страница')
 @section('header')
    <section id="cta" class="section">
             <div class="container">
@@ -54,7 +54,7 @@
                                         <p>{!! $post->content !!}</p>
 
                                 <small>{{$post->getInfoDate()}}</small>
-                                <small><i class="fa fa-eye"></i> 2291</small>
+                                <small><i class="fa fa-eye"></i> {{$post->views}}</small>
                             </div><!-- end meta -->
                         </div><!-- end blog-box -->
 
