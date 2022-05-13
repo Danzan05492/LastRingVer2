@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\InfoController as PublicInfoController;
+use App\Http\Controllers\CategoryController as PublicCategoryController;
 
 /*
 |--------------------------------------------------------------------------
