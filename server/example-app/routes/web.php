@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\InfoController as PublicInfoController;
 use App\Http\Controllers\CategoryController as PublicCategoryController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::resource('/infos',InfoController::class);
     }
 );
+//---- поиск
+Route::get('/search',[SearchController::class,'index'])->name('search');
+
 require __DIR__.'/auth.php';
 
