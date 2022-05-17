@@ -44,4 +44,8 @@ class Info extends Model
     public function getInfoDate(){
         return Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->format('d F, Y');
     }
+    //Scope
+    public function scopeLike($query,$s){
+        return $query->where('title','LIKE',"%{$s}%");
+    }
 }
