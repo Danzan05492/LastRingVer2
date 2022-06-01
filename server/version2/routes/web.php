@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\CondemnedController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +22,7 @@ Route::get('/test', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('/condemneds',CondemnedController::class);
 
 require __DIR__.'/auth.php';
