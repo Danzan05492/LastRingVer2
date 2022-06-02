@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<div class="col-12">
+
     <div class="card">
         <div class="card-header">
           <h3 class="card-title">Информация об осужденных</h3>          
@@ -8,7 +8,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <button class="btn btn-primary">Добавить осужденного</button><br><br>
+            <a href="{{ route('condemneds.create') }}"><button class="btn btn-primary">Добавить осужденного</button></a><br><br>
           @if($prisoners->count()>0)  
           <table id="example2" class="table table-bordered table-hover">
             <thead>
@@ -52,5 +52,5 @@
         </div>
         <!-- /.card-body -->
       </div>
-</div>
+
 @endsection

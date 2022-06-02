@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Condemned;
+use App\Http\Requests\StoreCondemned;
 
 class CondemnedController extends Controller
 {
@@ -26,7 +27,7 @@ class CondemnedController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.condemneds.create');
     }
 
     /**
@@ -35,9 +36,10 @@ class CondemnedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreCondemned $request)
+    {     
+        Condemned::create($request->all());        
+        return redirect()->route('condemneds.index')->with('success','Запись добавлена');
     }
 
     /**
@@ -59,7 +61,8 @@ class CondemnedController extends Controller
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $condemned=Condemned::find($id);
+        return view('admin.condemneds.edit',compact('condemned'));
     }
 
     /**
@@ -69,9 +72,11 @@ class CondemnedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(StoreCondemned $request, $id)
+    {        
+        $condemned=Condemned::find($id);
+        $condemned->update($request->all());
+        return redirect()->route('condemneds.index')->with('success','Запись обновлена');
     }
 
     /**
@@ -82,6 +87,8 @@ class CondemnedController extends Controller
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $condemned=Condemned::find($id);
+        $condemned->delete();
+        return redirect()->route('condemneds.index')->with('success','Запись удалена');
     }
 }
