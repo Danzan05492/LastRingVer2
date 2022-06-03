@@ -16,13 +16,14 @@ use App\Http\Controllers\Admin\CondemnedController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return view('testadmin');
-});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('/condemneds',CondemnedController::class);
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    Route::resource('/condemneds',CondemnedController::class);
+});
+
 
 require __DIR__.'/auth.php';
