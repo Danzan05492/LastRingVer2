@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Список осужденных | Добавление')
 @section('content')
     <div class="card">
         <div class="card-header">
