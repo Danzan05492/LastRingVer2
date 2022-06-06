@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Condemned;
-use App\Http\Requests\StoreCondemned;
-
-class CondemnedController extends Controller
+use App\Models\Illness;
+use App\Http\Requests\StoreIllness;
+class IllnessController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class CondemnedController extends Controller
      */
     public function index()
     {
-        $prisoners=Condemned::all();
-        return view('admin.condemneds.index',['prisoners'=>$prisoners]);
+        $illnesses=Illness::all();
+        return view('admin.illnesses.index',['illnesses'=>$illnesses]);
     }
 
     /**
@@ -27,7 +26,7 @@ class CondemnedController extends Controller
      */
     public function create()
     {
-        return view('admin.condemneds.create');
+        return view('admin.illnesses.create');
     }
 
     /**
@@ -36,13 +35,12 @@ class CondemnedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCondemned $request)
-    {     
-        Condemned::create($request->all());        
-        return redirect()->route('condemneds.index')->with('success','Запись добавлена');
+    public function store(StoreIllness $request)
+    {
+        Illness::create($request->all());        
+        return redirect()->route('illnesses.index')->with('success','Болезнь добавлена');
     }
-
-    
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -51,8 +49,8 @@ class CondemnedController extends Controller
      */
     public function edit($id)
     {
-        $condemned=Condemned::find($id);
-        return view('admin.condemneds.edit',compact('condemned'));
+        $illness=Illness::find($id);
+        return view('admin.illnesses.edit',compact('illness'));
     }
 
     /**
@@ -62,11 +60,11 @@ class CondemnedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCondemned $request, $id)
-    {        
-        $condemned=Condemned::find($id);
-        $condemned->update($request->all());
-        return redirect()->route('condemneds.index')->with('success','Запись обновлена');
+    public function update(StoreIllness $request, $id)
+    {
+        $illness=Illness::find($id);
+        $illness->update($request->all());
+        return redirect()->route('illnesses.index')->with('success','Запись обновлена');
     }
 
     /**
@@ -77,8 +75,8 @@ class CondemnedController extends Controller
      */
     public function destroy($id)
     {
-        $condemned=Condemned::find($id);
-        $condemned->delete();
-        return redirect()->route('condemneds.index')->with('success','Запись удалена');
+        $illness=Illness::find($id);
+        $illness->delete();
+        return redirect()->route('illnesses.index')->with('success','Запись удалена');
     }
 }
