@@ -39,8 +39,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="illness_id">Код заболевания</label>
-                        <input class="form-control" name="illness_id" id="illness_id" placeholder="Код заболевания" value='0'>
+                        <label for="illness_id">Заболевание</label>
+                        <select class="form-control" id="illness_id" name="illness_id">
+                        @foreach ($illnesses as $key=>$value)
+                          <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Информация</label>

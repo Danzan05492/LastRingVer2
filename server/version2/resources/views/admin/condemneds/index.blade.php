@@ -31,7 +31,7 @@
                     Ж
                     @endif
               </td>
-              <td>{{ $prisoner->illness }}</td>
+              <td><?=$prisoner->illness->title ?></td>
               <td>
                   <a href="{{ route('condemneds.edit',['condemned'=>$prisoner->id]) }}" class="btn btn-info float-left mr-1 btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="{{ route('condemneds.destroy',['condemned'=>$prisoner->id]) }}" method="post" class="float-left">

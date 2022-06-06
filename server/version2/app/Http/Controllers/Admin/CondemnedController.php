@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Condemned;
+use App\Models\Illness;
 use App\Http\Requests\StoreCondemned;
 
 class CondemnedController extends Controller
@@ -27,7 +28,8 @@ class CondemnedController extends Controller
      */
     public function create()
     {
-        return view('admin.condemneds.create');
+        $illnesses=Illness::pluck('title','id')->all();
+        return view('admin.condemneds.create',compact('illnesses'));
     }
 
     /**
@@ -52,7 +54,8 @@ class CondemnedController extends Controller
     public function edit($id)
     {
         $condemned=Condemned::find($id);
-        return view('admin.condemneds.edit',compact('condemned'));
+        $illnesses=Illness::pluck('title','id')->all();
+        return view('admin.condemneds.edit',compact('condemned','illnesses'));
     }
 
     /**
