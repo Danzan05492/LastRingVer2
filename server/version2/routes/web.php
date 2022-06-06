@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CondemnedController;
+use App\Http\Controllers\Admin\IllnessController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,7 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/condemneds',CondemnedController::class);
+    Route::resource('/illnesses',IllnessController::class);
 });
 
 
