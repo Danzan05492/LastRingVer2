@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Condemned;
 use App\Models\Illness;
 use App\Http\Requests\StoreCondemned;
+use Illuminate\Support\Facades\Storage;
 
 class CondemnedController extends Controller
 {
@@ -39,8 +40,13 @@ class CondemnedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCondemned $request)
-    {     
-        Condemned::create($request->all());        
+    {   
+        $data=$request->all();
+        if ($request->hasFile('thumbnail')){
+            $folder=date('Y-m-d');
+            $data['thumbnail']=$request->file('thumbnail')->store("/images/{$folder}");
+        }
+        Condemned::create($data);        
         return redirect()->route('condemneds.index')->with('success','Запись добавлена');
     }
 
@@ -68,7 +74,13 @@ class CondemnedController extends Controller
     public function update(StoreCondemned $request, $id)
     {        
         $condemned=Condemned::find($id);
-        $condemned->update($request->all());
+        $data=$request->all();
+        if ($request->hasFile('thumbnail')){
+            Storage::delete($condemned->thumbnail);
+            $folder=date('Y-m-d');
+            $data['thumbnail']=$request->file('thumbnail')->store("public/images/{$folder}");
+        }
+        $condemned->update($data);
         return redirect()->route('condemneds.index')->with('success','Запись обновлена');
     }
 

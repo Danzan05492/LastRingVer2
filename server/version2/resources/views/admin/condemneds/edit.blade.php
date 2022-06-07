@@ -55,6 +55,16 @@
                         <label for="nick">Псевдоним</label>
                         <input class="form-control" name="nick" id="nick" placeholder="Имя" value="{{ $condemned->nick }}">
                     </div>  
+                    <div class="form-group">
+                      <label for="thumbnail">Изображение</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" name="thumbnail" class="custom-file-input" id="thumbnail" >
+                          <label class="custom-file-label" for="thumbnail">Выберите файл</label>
+                        </div>                        
+                      </div>
+                    </div>  
+                    <img src="/storage/{{ $condemned->thumbnail}}">
                 </div>
                 <!-- /.card-body -->
 

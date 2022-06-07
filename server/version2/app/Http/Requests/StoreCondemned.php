@@ -28,7 +28,8 @@ class StoreCondemned extends FormRequest
         return [
             'family'=>'required',
             'name'=>'required',
-            'illness_id'=>'integer'
+            'illness_id'=>'integer',
+            'thumbnail'=>'nullable|image'
         ];
     }
 }

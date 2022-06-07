@@ -1,14 +1,13 @@
 @extends('layouts.admin')
 @section('title', 'Список осужденных | Добавление')
 @section('content')
-    <div class="card">
+<div class="col-md-6 col-sm-12">
+    <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">Добавить осужденного</h3>                    
         </div>
         <!-- /.card-header -->
-        <div class="card-body">
-            <div class="col-md-6 col-sm-12">
-            <form action="{{ route('condemneds.store') }}" method="POST">
+            <form action="{{ route('condemneds.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -49,10 +48,19 @@
                     <div class="form-group">
                         <label>Информация</label>
                         <textarea class="form-control" name="info" rows="3" placeholder="Enter ..."></textarea>
-                      </div>
-                      <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label for="nick">Псевдоним</label>
                         <input class="form-control" name="nick" id="nick" placeholder="Имя">
+                    </div>  
+                    <div class="form-group">
+                      <label for="thumbnail">Изображение</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" name="thumbnail" class="custom-file-input" id="thumbnail" >
+                          <label class="custom-file-label" for="thumbnail">Выберите файл</label>
+                        </div>                        
+                      </div>
                     </div>  
                 </div>
                 <!-- /.card-body -->
@@ -61,7 +69,7 @@
                   <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
               </form>
-            </div>
+
         </div>
     </div>
 @endsection
