@@ -78,8 +78,8 @@ class CondemnedController extends Controller
         if ($request->hasFile('thumbnail')){
             Storage::delete($condemned->thumbnail);
             $folder=date('Y-m-d');
-            $data['thumbnail']=$request->file('thumbnail')->store("public/images/{$folder}");
-        }
+            $data['thumbnail']=$request->file('thumbnail')->store("/images/{$folder}");
+        }        
         $condemned->update($data);
         return redirect()->route('condemneds.index')->with('success','Запись обновлена');
     }

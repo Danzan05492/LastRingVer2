@@ -8,7 +8,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="col-md-6 col-sm-12">
-            <form action="{{ route('condemneds.update',['condemned'=>$condemned->id]) }}" method="POST">
+            <form action="{{ route('condemneds.update',['condemned'=>$condemned->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
