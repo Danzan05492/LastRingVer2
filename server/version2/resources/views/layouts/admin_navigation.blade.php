@@ -127,9 +127,13 @@
         </a>
       </li>     
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="{{ route('logout') }}" role="button">
-          <i class="fas fa-arrow-circle-left" alt="Выход"></i>
-        </a>
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <a class="nav-link" href="{{ route('logout') }}" title="Выход" onclick="event.preventDefault();
+          this.closest('form').submit();" role="button">
+            <i class="fas fa-arrow-circle-left"></i>
+          </a>          
+      </form>        
       </li>
     </ul>
   </nav>
