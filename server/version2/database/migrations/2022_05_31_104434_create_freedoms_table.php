@@ -17,7 +17,7 @@ class CreateFreedomsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('condemned_id')->unsigned();
-            $table->text('info');
+            $table->text('info')->nullable();
             $table->string('slug')->unique();
         });
     }
