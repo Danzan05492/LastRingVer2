@@ -8,3 +8,6 @@
 При валидации создаём Request (Управление категориями часть 2. 13-19) - правила валидации + проверка авторизации!
 
 php artisan migrate:refresh - обновление базы
+php artisan make:controller Admin/NoteController -r - создание ресурса
+php artisan make:request StoreNote - Реквест для модели
+php artisan make:model Note -m  - Модель и миграция
