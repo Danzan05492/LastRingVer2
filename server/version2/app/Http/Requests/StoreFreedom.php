@@ -28,7 +28,7 @@ class StoreFreedom extends FormRequest
         return [
             'condemned_id'=>'required|integer',
             'slug'=>'required',
-            'info'=>'nullable|text'            
+            'info'=>'nullable|string'            
         ];
     }
 }

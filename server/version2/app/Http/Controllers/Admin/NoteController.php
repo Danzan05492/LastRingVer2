@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Note;
+use App\Http\Requests\StoreNote;
 
 class NoteController extends Controller
 {
@@ -26,7 +27,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.notes.create');
     }
 
     /**
@@ -35,9 +36,10 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNote $request)
     {
-        //
+        Note::create($request->all());   
+        return redirect()->route('notes.index')->with('success','Узел добавлен');
     }
 
     /**
@@ -59,7 +61,8 @@ class NoteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $note=Note::find($id);        
+        return view('admin.notes.edit',compact('note'));
     }
 
     /**
@@ -69,9 +72,11 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreNote $request, $id)
     {
-        //
+        $note=Note::find($id);           
+        $note->update($request->all());
+        return redirect()->route('notes.index')->with('success','Узел обновлена');
     }
 
     /**
@@ -82,6 +87,8 @@ class NoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $note=Note::find($id);                
+        $note->delete();
+        return redirect()->route('notes.index')->with('success','Запись удалена');
     }
 }

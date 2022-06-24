@@ -25,10 +25,10 @@ class StoreNote extends FormRequest
     {
         return [
             'title'=>'required|string',
-            'description'=>'nullable|text',
+            'description'=>'nullable|string',
             'type'=>'integer',
             'default_length'=>'integer',
-            'content'=>'nullable|text'
+            'content'=>'nullable|string'
         ];
     }
 }

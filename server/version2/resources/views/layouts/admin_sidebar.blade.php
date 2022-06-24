@@ -44,13 +44,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('illnesses.index') }}" class="nav-link active">
+                <a href="{{ route('illnesses.index') }}" class="nav-link @if (request()->routeIs('illness.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Болезни</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('notes.index') }}" class="nav-link">
+                <a href="{{ route('notes.index') }}" class="nav-link @if (request()->routeIs('notes.index')) active @endif" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>Узлы</p>
                 </a>
