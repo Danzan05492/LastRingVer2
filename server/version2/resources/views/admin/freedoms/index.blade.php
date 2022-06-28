@@ -16,6 +16,7 @@
               <th>Возраст</th>
               <th>Пол</th>
               <th>Заболевания</th>
+              <th>Дата освобождения</th>
               <th></th>
             </tr>
             </thead>
@@ -35,7 +36,8 @@
                     Ж
                   @endif
               </td>
-              <td><?=$prisoner->illness->title ?></td>
+              <td>{{ $prisoner->illness->title }}</td>
+              <td>{{ date("d-m-Y",strtotime($freedom->enddate)) }}</td>
               <td>
                   <a href="{{ route('freedoms.edit',['freedom'=>$freedom->id]) }}" class="btn btn-info float-left mr-1 btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="{{ route('freedoms.destroy',['freedom'=>$freedom->id]) }}" method="post" class="float-left">

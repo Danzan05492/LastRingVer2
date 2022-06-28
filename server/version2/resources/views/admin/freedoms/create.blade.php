@@ -25,7 +25,11 @@
                     <div class="form-group">
                         <label for="nick">Краткое название для дела</label>
                         <input class="form-control" name="slug" id="slug" placeholder="Краткое название">
-                    </div>                    
+                    </div> 
+                    <div class="form-group">
+                      <label for="enddate">Дата завершения</label>
+                      <input class="form-control" name="enddate" id="enddate" placeholder="Дата завершения">
+                  </div>                    
                 </div>    
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Сохранить</button>
