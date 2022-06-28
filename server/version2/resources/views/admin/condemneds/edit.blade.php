@@ -25,8 +25,8 @@
                         <input class="form-control" name="patronymic" id="patronymic" placeholder="Отчество" value="{{ $condemned->patronymic }}">
                     </div>
                     <div class="form-group">
-                        <label for="age">Возраст</label>
-                        <input class="form-control" name="age" id="age" placeholder="Возраст" value="{{ $condemned->age }}">
+                        <label for="birthday">Дата рождения</label>
+                        <input class="form-control" name="birthday" id="birthday" placeholder="Дата рождения" value="{{ $condemned->birthday }}">
                     </div>
                     <div class="form-group">
                         <label>Пол</label>

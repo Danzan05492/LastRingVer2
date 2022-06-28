@@ -23,8 +23,8 @@
                         <input class="form-control" name="patronymic" id="patronymic" placeholder="Отчество">
                     </div>
                     <div class="form-group">
-                        <label for="age">Возраст</label>
-                        <input class="form-control" name="age" id="age" placeholder="Возраст">
+                        <label for="birthday">Дата рождения</label>
+                        <input class="form-control" name="birthday" id="birthday" placeholder="Дата рождения">
                     </div>
                     <div class="form-group">
                         <label>Пол</label>

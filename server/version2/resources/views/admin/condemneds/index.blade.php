@@ -13,7 +13,7 @@
             <thead>
             <tr>
               <th>ФИО</th>
-              <th>Возраст</th>
+              <th>Дата рождения (возраст)</th>
               <th>Пол</th>
               <th>Заболевания</th>
               <th></th>
@@ -23,7 +23,7 @@
             @foreach($prisoners as $prisoner)
             <tr>            
               <td>{{ $prisoner->family }} {{ $prisoner->name }} {{ $prisoner->patronymic }}</td>
-              <td>{{ $prisoner->age }}</td>
+              <td>{{ $prisoner->getBirthday()}} @if ($prisoner->getAge()!="") ({{ $prisoner->getAge() }})@endif</td>
               <td>
                   @if($prisoner->gender==1)
                     М
