@@ -42,7 +42,8 @@
               <h3 class="card-title">Операции</h3>                    
             </div>        
             <div class="card-body">
-                <a  href="{{ route('points.create') }}">[Добавить точку]</a>
+                <a href="{{ route('points.create') }}">[Добавить точку]</a><br>
+                <a href="{{ route('freedoms.index') }}">[Сгенерировать календарь]</a>
             </div>
         </div>    
     </div>
