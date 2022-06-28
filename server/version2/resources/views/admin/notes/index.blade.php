@@ -23,7 +23,7 @@
             <tr>            
               <td>{{ $note->title }}</td>
               <td>{{ $note->description }}</td>              
-              <td>{{ $note->type }}</td>              
+              <td>{{ $types[$note->type] }}</td>              
               <td>
                   <a href="{{ route('notes.edit',['note'=>$note->id]) }}" class="btn btn-info float-left mr-1 btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="{{ route('notes.destroy',['note'=>$note->id]) }}" method="post" class="float-left">

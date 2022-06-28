@@ -18,11 +18,15 @@
                     <div class="form-group">
                         <label>Описание</label>
                         <textarea class="form-control" name="description" rows="3" placeholder="Введите описание"></textarea>
-                    </div>                      
+                    </div>                                   
                     <div class="form-group">
-                        <label>Тип (пока полем)</label>
-                        <input class="form-control @error('type') is-invalid @enderror" name="type" id="type" placeholder="Тип">
-                    </div>
+                        <label>Тип</label>
+                        <select class="form-control" name="type">
+                            @foreach($types as $key=>$value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>                        
+                    </div>                    
                     <div class="form-group">
                         <label>Продолжительность в днях (по умолчанию)</label>
                         <input class="form-control @error('default_length') is-invalid @enderror" name="default_length" id="default_length" placeholder="Продолжительность в днях (по умолчанию)">

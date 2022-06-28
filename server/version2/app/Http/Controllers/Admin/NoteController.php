@@ -17,7 +17,8 @@ class NoteController extends Controller
     public function index()
     {
         $notes=Note::all();
-        return view('admin.notes.index',compact('notes'));
+        $types=Note::getTypes();
+        return view('admin.notes.index',compact('notes','types'));
     }
 
     /**
@@ -27,7 +28,8 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return view('admin.notes.create');
+        $types=Note::getTypes();
+        return view('admin.notes.create',compact('types'));
     }
 
     /**
@@ -61,8 +63,9 @@ class NoteController extends Controller
      */
     public function edit($id)
     {
-        $note=Note::find($id);        
-        return view('admin.notes.edit',compact('note'));
+        $note=Note::find($id);      
+        $types=Note::getTypes();  
+        return view('admin.notes.edit',compact('note','types'));
     }
 
     /**

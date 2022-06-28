@@ -14,8 +14,8 @@ class Note extends Model
      */
     const INFORMATION=1;
     const BREAKPOINT=2;
-    public static function getConstants()
+    public static function getTypes()
     {
-        return [self::INFORMATION,self::BREAKPOINT];
+        return [self::INFORMATION=>"Информация",self::BREAKPOINT=>"Контрольная точка"];
     }
 }
