@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Illness;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Note;
 class ZeroDataSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class ZeroDataSeeder extends Seeder
         User::create(array(
             'name'=>'Коровов',
             'email'=>'cow@bsu.ru',
-            'password'=>'12345678'
+            'password'=>Hash::make('12345678')
         ));
         //Справочник болезней
         Illness::create(array(

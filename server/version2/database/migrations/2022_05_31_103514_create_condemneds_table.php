@@ -19,7 +19,7 @@ class CreateCondemnedsTable extends Migration
             $table->string("family");
             $table->string("name");
             $table->string("patronymic");
-            $table->tinyInteger('age');
+            $table->date('birthday')->nullable();
             $table->tinyInteger('gender');
             $table->integer('illness_id')->unsigned();
             $table->text("info")->nullable(); 
