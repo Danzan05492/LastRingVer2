@@ -21,6 +21,7 @@ class CreateNotesTable extends Migration
             $table->integer('type');
             $table->integer('default_length');
             $table->text('content')->nullable();
+            $table->string('slug')->unique();
         });
     }
 

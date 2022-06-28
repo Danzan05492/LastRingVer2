@@ -28,7 +28,8 @@ class StoreNote extends FormRequest
             'description'=>'nullable|string',
             'type'=>'integer',
             'default_length'=>'integer',
-            'content'=>'nullable|string'
+            'content'=>'nullable|string',
+            'slug'=>'string'
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
-    protected $fillable=['title','description','type','default_length','content'];
+    protected $fillable=['title','description','type','default_length','content','slug'];
     /**
      * Константы для типа узла
      */
