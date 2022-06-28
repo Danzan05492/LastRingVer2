@@ -26,9 +26,9 @@
               <?php 
                 $prisoner=$freedom->condemned; 
               ?>
-              <td>{{ $freedom->slug }}</td>
+              <td><a href="{{ route('freedoms.show',['freedom'=>$freedom->id]) }}">{{ $freedom->slug }}</a></td>
               <td>{{ $prisoner->family }} {{ $prisoner->name }} {{ $prisoner->patronymic }}</td>
-              <td>{{ $prisoner->age }}</td>
+              <td>{{ $prisoner->getAge() }}</td>
               <td>
                   @if($prisoner->gender==1)
                     М
