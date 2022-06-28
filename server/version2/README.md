@@ -1,4 +1,6 @@
 ----------------------TODO
+Для заключённого дата рождения (вместо годов - ибо вычисляемая херня)
+Нормальное задание дат для freedom
 Ошибки валидации в форме добавления заключённого
 Редактирование карточек только по юзеру
 Софт удаление для Карточек?
@@ -11,3 +13,4 @@ php artisan migrate:refresh - обновление базы
 php artisan make:controller Admin/NoteController -r - создание ресурса
 php artisan make:request StoreNote - Реквест для модели
 php artisan make:model Note -m  - Модель и миграция
+php artisan db:seed - вытащить все данные из дефолтного сида
