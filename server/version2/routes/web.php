@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CondemnedController;
 use App\Http\Controllers\Admin\IllnessController;
 use App\Http\Controllers\Admin\FreedomController;
 use App\Http\Controllers\Admin\NoteController;
+use App\Http\Controllers\Admin\PointController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/illnesses',IllnessController::class);
     Route::resource('/freedoms',FreedomController::class);
     Route::resource('/notes',NoteController::class);
+    Route::resource('/points',PointController::class);
 });
 
 

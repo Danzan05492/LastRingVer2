@@ -20,7 +20,7 @@ class FreedomController extends Controller
         $freedoms=Freedom::all();
         return view('admin.freedoms.index',['freedoms'=>$freedoms]);
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -52,7 +52,14 @@ class FreedomController extends Controller
      */
     public function show($id)
     {
-        //
+        $freedom=Freedom::find($id);
+        if (is_object($freedom)){
+            $condemned=$freedom->condemned;
+            return view('admin.freedoms.show',compact('freedom','condemned'));        
+        }
+        else{
+            return redirect()->route('freedoms.index')->with('success','Такого дела нет');
+        }
     }
 
     /**
