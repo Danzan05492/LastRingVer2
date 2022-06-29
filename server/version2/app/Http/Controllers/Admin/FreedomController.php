@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Freedom;
 use App\Models\Condemned;
+use App\Models\Point;
 use App\Http\Requests\StoreFreedom;
 
 class FreedomController extends Controller
@@ -55,7 +56,8 @@ class FreedomController extends Controller
         $freedom=Freedom::find($id);
         if (is_object($freedom)){
             $condemned=$freedom->condemned;
-            return view('admin.freedoms.show',compact('freedom','condemned'));        
+            $points=Point::where('freedom_id',$freedom->id)->get();
+            return view('admin.freedoms.show',compact('freedom','condemned','points'));        
         }
         else{
             return redirect()->route('freedoms.index')->with('success','Такого дела нет');

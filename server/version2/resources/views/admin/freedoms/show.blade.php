@@ -42,7 +42,7 @@
               <h3 class="card-title">Операции</h3>                    
             </div>        
             <div class="card-body">
-                <a href="{{ route('points.create') }}">[Добавить точку]</a><br>
+                <a href="{{ route('points.create',['freedom_id'=>$freedom->id]) }}">[Добавить точку]</a><br>
                 <a href="{{ route('freedoms.index') }}">[Сгенерировать календарь]</a>
             </div>
         </div>    
@@ -50,4 +50,26 @@
 </div>
 <hr>
 <h2 class="m-0">Календарь</h2>
+@if ($points->count())    
+    <div class="row">
+    @foreach ($points as $point)
+        <div class="col-3" style="border:2px solid; padding:10px">
+            Название точки: {{ $point->node->title }}<br>
+            Тип точки: {{ $point->node->getType() }}<br>
+            Дата начала: {{ $point->getDate("start") }}<br>
+            Дата завершения: {{ $point->getDate("end") }}<br>
+            Статус:{{ $point->getStatus() }}<br>
+            <hr>
+            <a href="{{ route('points.edit',['point'=>$point->id]) }}" class="btn btn-info float-left mr-1 btn-sm"><i class="fas fa-pencil-alt"></i></a>
+            <form action="{{ route('points.destroy',['point'=>$point->id]) }}" method="post" class="float-left">
+                @csrf
+                    @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены что хотите удалить?')"><i class="fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    @endforeach
+    </div>
+@else
+    Пока нет точек в календаре
+@endif
 @endsection

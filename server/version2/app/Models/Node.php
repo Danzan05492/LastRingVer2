@@ -18,4 +18,10 @@ class Node extends Model
     {
         return [self::INFORMATION=>"Информация",self::BREAKPOINT=>"Контрольная точка"];
     }
+    /**
+     * Метод вернёт текстовое описание типа узла
+     */
+    public function getType(){
+        return self::getTypes()[$this->type];
+    }
 }

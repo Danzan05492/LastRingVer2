@@ -20,7 +20,7 @@ class CreatePointsTable extends Migration
             $table->integer('owner_id');
             $table->dateTime('startdate', 0);
             $table->dateTime('enddate', 0);
-            $table->tinyInteger('note_id');
+            $table->tinyInteger('node_id');
             $table->tinyInteger('status');
             $table->text('info')->nullable();
         });

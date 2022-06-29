@@ -5,17 +5,29 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePoint;
+use App\Models\Freedom;
+use App\Models\Point;
+use App\Models\Node;
+use Illuminate\Support\Facades\Auth;
 class PointController extends Controller
 {
    
     /**
-     * Show the form for creating a new resource.
-     *
+     * Метод получает из GET параметр freedom_id и пытается вывести форму для создания точки
+     * 
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $freedom=Freedom::find($_GET['freedom_id']);        
+        if (is_object($freedom)){            
+            $nodes=Node::all();
+            $default_status=Point::INPROGRESS;
+            return view('admin.points.create',compact('freedom','nodes','default_status'));        
+        }
+        else{
+            return redirect()->route('freedoms.index')->with('success','Такого дела нет');
+        }
     }
 
     /**
@@ -26,7 +38,10 @@ class PointController extends Controller
      */
     public function store(StorePoint $request)
     {
-        //
+        $data=$request->all();
+        $data['owner_id']=Auth::id();
+        $point=Point::create($data);                
+        return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка добавлена');
     }
 
     /**
@@ -48,7 +63,9 @@ class PointController extends Controller
      */
     public function edit($id)
     {
-        //
+        $point=Point::find($id);
+        $nodes=Node::all();
+        return view('admin.points.edit',compact('point','nodes'));
     }
 
     /**
@@ -60,7 +77,9 @@ class PointController extends Controller
      */
     public function update(StorePoint $request, $id)
     {
-        //
+        $point=Point::find($id);              
+        $point->update($request->all());
+        return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка обновлена');
     }
 
     /**
@@ -71,6 +90,8 @@ class PointController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $point=Point::find($id);                
+        $point->delete();
+        return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка удалена');
     }
 }
