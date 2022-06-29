@@ -103,4 +103,25 @@ class FreedomController extends Controller
         $freedom->delete();
         return redirect()->route('freedoms.index')->with('success','Запись удалена');
     }
+    /**
+     * Метод генерирует календарь для дела
+     * 
+     * @param int $freedom - идентификатор дела
+     * @return \Illuminate\Http\Response
+     */
+    public function calendarForm($id){
+        $freedom=freedom::find($id); 
+        //Тут вывод формы генератора
+        echo $id;
+       // return view('admin.freedoms.calendar-form',compact('freedom'));
+    }
+    /**
+     * Обрабатывает форму генератора и создаёт календарь
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function makeCalendar($id){
+        echo "makeCalendar".$id;
+    }
 }

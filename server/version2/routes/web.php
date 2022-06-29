@@ -26,6 +26,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    //Дополнительные руты
+    Route::get('/freedoms/calendar-form/{freedom}', [FreedomController::class,'calendarForm']);
+    Route::get('/freedoms/make-calendar/{freedom}', [FreedomController::class,'makeCalendar']);
+    //Основные ресурсы
     Route::resource('/condemneds',CondemnedController::class);
     Route::resource('/illnesses',IllnessController::class);
     Route::resource('/freedoms',FreedomController::class);
