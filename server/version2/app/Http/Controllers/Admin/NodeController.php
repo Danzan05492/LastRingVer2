@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Note;
-use App\Http\Requests\StoreNote;
+use App\Models\Node;
+use App\Http\Requests\StoreNode;
 
-class NoteController extends Controller
+class NodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes=Note::all();
-        $types=Note::getTypes();
-        return view('admin.notes.index',compact('notes','types'));
+        $nodes=Node::all();
+        $types=Node::getTypes();
+        return view('admin.nodes.index',compact('nodes','types'));
     }
 
     /**
@@ -28,8 +28,8 @@ class NoteController extends Controller
      */
     public function create()
     {
-        $types=Note::getTypes();
-        return view('admin.notes.create',compact('types'));
+        $types=Node::getTypes();
+        return view('admin.nodes.create',compact('types'));
     }
 
     /**
@@ -38,10 +38,10 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNote $request)
+    public function store(StoreNode $request)
     {
-        Note::create($request->all());   
-        return redirect()->route('notes.index')->with('success','Узел добавлен');
+        Node::create($request->all());   
+        return redirect()->route('nodes.index')->with('success','Узел добавлен');
     }
 
     /**
@@ -63,9 +63,9 @@ class NoteController extends Controller
      */
     public function edit($id)
     {
-        $note=Note::find($id);      
-        $types=Note::getTypes();  
-        return view('admin.notes.edit',compact('note','types'));
+        $node=Node::find($id);      
+        $types=Node::getTypes();  
+        return view('admin.nodes.edit',compact('node','types'));
     }
 
     /**
@@ -75,11 +75,11 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreNote $request, $id)
+    public function update(StoreNode $request, $id)
     {
-        $note=Note::find($id);           
-        $note->update($request->all());
-        return redirect()->route('notes.index')->with('success','Узел обновлена');
+        $node=Node::find($id);           
+        $node->update($request->all());
+        return redirect()->route('nodes.index')->with('success','Узел обновлена');
     }
 
     /**
@@ -90,8 +90,8 @@ class NoteController extends Controller
      */
     public function destroy($id)
     {
-        $note=Note::find($id);                
-        $note->delete();
-        return redirect()->route('notes.index')->with('success','Запись удалена');
+        $node=Node::find($id);                
+        $node->delete();
+        return redirect()->route('nodes.index')->with('success','Узел удалён');
     }
 }

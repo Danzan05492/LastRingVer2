@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CondemnedController;
 use App\Http\Controllers\Admin\IllnessController;
 use App\Http\Controllers\Admin\FreedomController;
-use App\Http\Controllers\Admin\NoteController;
+use App\Http\Controllers\Admin\NodeController;
 use App\Http\Controllers\Admin\PointController;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/condemneds',CondemnedController::class);
     Route::resource('/illnesses',IllnessController::class);
     Route::resource('/freedoms',FreedomController::class);
-    Route::resource('/notes',NoteController::class);
+    Route::resource('/nodes',NodeController::class);
     Route::resource('/points',PointController::class);
 });
 

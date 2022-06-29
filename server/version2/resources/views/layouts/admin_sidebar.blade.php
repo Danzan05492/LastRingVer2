@@ -50,7 +50,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('notes.index') }}" class="nav-link @if (request()->routeIs('notes.index')) active @endif" >
+                <a href="{{ route('nodes.index') }}" class="nav-link @if (request()->routeIs('nodes.index')) active @endif" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>Узлы</p>
                 </a>

@@ -8,7 +8,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="col-md-6 col-sm-12">
-            <form action="{{ route('notes.store') }}" method="POST">
+            <form action="{{ route('nodes.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
