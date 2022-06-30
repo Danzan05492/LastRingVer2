@@ -23,8 +23,7 @@ class CreateCondemnedsTable extends Migration
             $table->tinyInteger('gender');
             $table->integer('illness_id')->unsigned();
             $table->text("info")->nullable(); 
-            $table->string("nick")->unique();
-            $table->string('thumbnail')->nullable();
+            $table->string("nick")->unique();            
             $table->integer('owner_id');
         });
     }
