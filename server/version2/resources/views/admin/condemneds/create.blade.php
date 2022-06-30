@@ -27,6 +27,15 @@
                         <input class="form-control" name="birthday" id="birthday" placeholder="Дата рождения">
                     </div>
                     <div class="form-group">
+                      <label>Дата рождения:</label>
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label>Пол</label>
                         <div class="form-check">
                           <input class="form-check-input" type="radio" name="gender" value=1>
