@@ -9,7 +9,7 @@ use App\Models\Freedom;
 class Point extends Model
 {
     use HasFactory;
-    protected $fillable=['freedom_id','owner_id','startdate','enddate','node_id','status','info'];
+    protected $fillable=['freedom_id','startdate','enddate','node_id','status','info'];
     /**
      * Статусы
      */

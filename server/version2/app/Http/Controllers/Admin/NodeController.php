@@ -40,7 +40,7 @@ class NodeController extends Controller
      */
     public function store(StoreNode $request)
     {
-        Node::create($request->all());   
+        Node::create($request->all());           
         return redirect()->route('nodes.index')->with('success','Узел добавлен');
     }
 

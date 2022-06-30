@@ -16,8 +16,7 @@ class CreatePointsTable extends Migration
         Schema::create('points', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('freedom_id');
-            $table->integer('owner_id');
+            $table->integer('freedom_id');            
             $table->dateTime('startdate', 0);
             $table->dateTime('enddate', 0);
             $table->tinyInteger('node_id');

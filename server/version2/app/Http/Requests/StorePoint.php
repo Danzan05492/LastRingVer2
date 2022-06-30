@@ -24,8 +24,7 @@ class StorePoint extends FormRequest
     public function rules()
     {
         return [
-            'freedom_id'=>'required|integer',
-            //'owner_id'=>'required|integer',
+            'freedom_id'=>'required|integer',            
             'startdate'=>'required|date',
             'enddate'=>'required|date',
             'node_id'=>'required|integer',

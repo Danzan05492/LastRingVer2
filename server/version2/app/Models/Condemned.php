@@ -10,7 +10,7 @@ use App\Http\Requests\StoreCondemned;
 class Condemned extends Model
 {
     use HasFactory;
-    protected $fillable=['family','name','patronymic','birthday','gender','illness_id','info','nick','thumbnail'];
+    protected $fillable=['family','name','patronymic','birthday','gender','illness_id','info','nick','thumbnail','owner_id'];
     public function illness(){
         return $this->belongsTo(Illness::class);
     }

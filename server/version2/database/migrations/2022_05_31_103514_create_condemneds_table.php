@@ -24,6 +24,8 @@ class CreateCondemnedsTable extends Migration
             $table->integer('illness_id')->unsigned();
             $table->text("info")->nullable(); 
             $table->string("nick")->unique();
+            $table->string('thumbnail')->nullable();
+            $table->integer('owner_id');
         });
     }
 

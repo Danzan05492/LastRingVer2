@@ -8,7 +8,7 @@ use App\Http\Requests\StorePoint;
 use App\Models\Freedom;
 use App\Models\Point;
 use App\Models\Node;
-use Illuminate\Support\Facades\Auth;
+
 class PointController extends Controller
 {
    
@@ -38,8 +38,7 @@ class PointController extends Controller
      */
     public function store(StorePoint $request)
     {
-        $data=$request->all();
-        $data['owner_id']=Auth::id();
+        $data=$request->all();        
         $point=Point::create($data);                
         return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка добавлена');
     }

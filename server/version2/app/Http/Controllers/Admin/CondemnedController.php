@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Condemned;
 use App\Models\Illness;
 use App\Http\Requests\StoreCondemned;
+use Illuminate\Support\Facades\Auth;
 
 class CondemnedController extends Controller
 {
@@ -41,7 +42,8 @@ class CondemnedController extends Controller
     public function store(StoreCondemned $request)
     {   
         $data=$request->all();
-        $data['thumbnail']=Condemned::uploadImage($request);        
+        $data['thumbnail']=Condemned::uploadImage($request);
+        $data['owner_id']=Auth::id();
         Condemned::create($data);        
         return redirect()->route('condemneds.index')->with('success','Запись добавлена');
     }
@@ -84,8 +86,7 @@ class CondemnedController extends Controller
      */
     public function destroy($id)
     {
-        $condemned=Condemned::find($id); 
-               
+        $condemned=Condemned::find($id);
         $condemned->delete();
         return redirect()->route('condemneds.index')->with('success','Запись удалена');
     }
