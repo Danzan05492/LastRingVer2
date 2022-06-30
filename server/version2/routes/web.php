@@ -27,8 +27,8 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     //Дополнительные руты
-    Route::get('/freedoms/calendar-form/{freedom}', [FreedomController::class,'calendarForm']);
-    Route::get('/freedoms/make-calendar/{freedom}', [FreedomController::class,'makeCalendar']);
+    Route::get('/freedoms/calendar-form/{freedom}', [FreedomController::class,'calendarForm'])->name('freedoms.calendar-form');
+    Route::get('/freedoms/make-calendar/{freedom}', [FreedomController::class,'makeCalendar'])->name('freedoms.make-calendar');
     //Основные ресурсы
     Route::resource('/condemneds',CondemnedController::class);
     Route::resource('/illnesses',IllnessController::class);

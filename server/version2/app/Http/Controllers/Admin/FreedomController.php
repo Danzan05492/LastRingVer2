@@ -8,6 +8,7 @@ use App\Models\Freedom;
 use App\Models\Condemned;
 use App\Models\Point;
 use App\Http\Requests\StoreFreedom;
+use App\Models\CalendarSettings;
 
 class FreedomController extends Controller
 {
@@ -56,7 +57,7 @@ class FreedomController extends Controller
         $freedom=Freedom::find($id);
         if (is_object($freedom)){
             $condemned=$freedom->condemned;
-            $points=Point::where('freedom_id',$freedom->id)->get();
+            $points=Point::where('freedom_id',$freedom->id)->orderBy('startdate')->orderByDesc('enddate')->get();
             return view('admin.freedoms.show',compact('freedom','condemned','points'));        
         }
         else{
@@ -106,14 +107,18 @@ class FreedomController extends Controller
     /**
      * Метод генерирует календарь для дела
      * 
-     * @param int $freedom - идентификатор дела
+     * @param int $id - идентификатор дела
      * @return \Illuminate\Http\Response
      */
     public function calendarForm($id){
-        $freedom=freedom::find($id); 
-        //Тут вывод формы генератора
-        echo $id;
-       // return view('admin.freedoms.calendar-form',compact('freedom'));
+        $freedom=Freedom::find($id); 
+        if(is_object($freedom)){
+            $condemned=$freedom->condemned;
+            return view('admin.freedoms.calendar-form',compact('freedom','condemned'));
+        }
+        else{
+            return redirect()->route('freedoms.show')->with('warning','Такого дела нет');
+        }
     }
     /**
      * Обрабатывает форму генератора и создаёт календарь
@@ -122,6 +127,17 @@ class FreedomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function makeCalendar($id){
-        echo "makeCalendar".$id;
+        $freedom=Freedom::find($id); 
+        if(is_object($freedom)){
+            $cs=CalendarSettings::makeSettings($freedom);
+            $points=$cs->points;
+            foreach($points as $point){
+                $point->save();
+            }
+            return redirect()->route('freedoms.show',['freedom'=>$freedom->id]) ->with('success','Календарь успешно добавлен');            
+        }
+        else{
+            return redirect()->route('freedoms.index')->with('warning','Такого дела нет');
+        }
     }
 }

@@ -10,6 +10,8 @@ use App\Http\Requests\StoreCondemned;
 class Condemned extends Model
 {
     use HasFactory;
+    const MALE=1;
+    const FEMALE=2;
     protected $fillable=['family','name','patronymic','birthday','gender','illness_id','info','nick','thumbnail','owner_id'];
     public function illness(){
         return $this->belongsTo(Illness::class);
@@ -57,7 +59,7 @@ class Condemned extends Model
      */
     public function inTheArmy(){
         $age=$this->getAge();
-        if ($age>=18 && $age<=27){
+        if ($age>=18 && $age<=27 && $this->gender==self::MALE){
             return true;
         }
         else{
