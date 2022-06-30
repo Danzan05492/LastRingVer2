@@ -52,6 +52,19 @@ class Condemned extends Model
         }
     }
     /**
+     * Метод возвращает годен к армии или нет
+     * @return bool
+     */
+    public function inTheArmy(){
+        $age=$this->getAge();
+        if ($age>=18 && $age<=27){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    /**
      * Метод возвращает "привычное" отображение даты рождения
      */
     public function getBirthday(){
