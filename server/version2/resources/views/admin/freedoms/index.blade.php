@@ -39,13 +39,21 @@
               <td>{{ $prisoner->illness->title }}</td>
               <td>{{ date("d-m-Y",strtotime($freedom->startdate)) }} - {{ date("d-m-Y",strtotime($freedom->enddate)) }}</td>
               <td>
+                @if ($freedom->canEdit())
                   <a href="{{ route('freedoms.edit',['freedom'=>$freedom->id]) }}" class="btn btn-info float-left mr-1 btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="{{ route('freedoms.destroy',['freedom'=>$freedom->id]) }}" method="post" class="float-left">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены что хотите удалить?')"><i class="fas fa-trash-alt"></i></button>
                   </form>
-            </td>              
+                @else
+                  @if ($freedom->status==$freedom::LOCKED)  
+                    Редактирование заблокировано
+                  @else
+                    Дело закрыто
+                  @endif
+                @endif
+              </td>              
             </tr>
             @endforeach            
           </table>

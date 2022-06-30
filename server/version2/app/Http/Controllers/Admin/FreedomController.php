@@ -56,7 +56,7 @@ class FreedomController extends Controller
     {
         $freedom=Freedom::find($id);
         if (is_object($freedom)){
-            $condemned=$freedom->condemned;
+            $condemned=$freedom->condemned;            
             $points=Point::where('freedom_id',$freedom->id)->orderBy('startdate')->orderByDesc('enddate')->get();
             return view('admin.freedoms.show',compact('freedom','condemned','points'));        
         }
@@ -134,7 +134,27 @@ class FreedomController extends Controller
             foreach($points as $point){
                 $point->save();
             }
+            $freedom->status=Freedom::LOCKED;
+            $freedom->save();
             return redirect()->route('freedoms.show',['freedom'=>$freedom->id]) ->with('success','Календарь успешно добавлен');            
+        }
+        else{
+            return redirect()->route('freedoms.index')->with('warning','Такого дела нет');
+        }
+    }
+    /**
+     * Метод меняет статус календаря
+     * @param int
+     * @return \Illuminate\Http\Response
+     */
+    public function calendarChangeStatus($freedom_id,$status){
+        $freedom=Freedom::find($freedom_id); 
+        if(is_object($freedom)){
+            if (in_array($status,array(Freedom::EDITABLE,Freedom::LOCKED,Freedom::FINISHED))){
+                $freedom->status=$status;
+                $freedom->save();
+            }
+            return redirect()->route('freedoms.show',['freedom'=>$freedom->id]) ->with('success','Статус изменён');            
         }
         else{
             return redirect()->route('freedoms.index')->with('warning','Такого дела нет');

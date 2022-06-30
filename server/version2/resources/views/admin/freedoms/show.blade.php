@@ -43,8 +43,15 @@
               <h3 class="card-title">Операции</h3>                    
             </div>        
             <div class="card-body">
-                <a href="{{ route('points.create',['freedom_id'=>$freedom->id]) }}">[Добавить точку]</a><br>
-                <a href="{{ route('freedoms.calendar-form',['freedom'=>$freedom->id]) }}">[Сгенерировать календарь]</a>
+                [<a href="{{ route('points.create',['freedom_id'=>$freedom->id]) }}">Добавить точку</a>]<br>
+                [<a href="{{ route('freedoms.calendar-form',['freedom'=>$freedom->id]) }}">Сгенерировать календарь</a>]<br>
+                @if ($freedom->status==$freedom::EDITABLE)
+                    [<a href="{{ route('freedoms.calendar-change-status',['freedom'=>$freedom->id,'status'=>$freedom::LOCKED]) }}">Заблокировать дело</a>]
+                @else
+                    [<a href="{{ route('freedoms.calendar-change-status',['freedom'=>$freedom->id,'status'=>$freedom::EDITABLE]) }}">Разблокировать</a>]
+                @endif
+                <br>
+                [<a href="{{ route('freedoms.calendar-change-status',['freedom'=>$freedom->id,'status'=>$freedom::FINISHED]) }}">Закрыть дело</a>]
             </div>
         </div>    
     </div>
