@@ -8,6 +8,7 @@
               <h3 class="card-title">Детали дела</h3>                    
             </div>        
             <div class="card-body">
+                <p><strong>Дата начала</strong>: {{ $freedom->startdate }}</p>
                 <p><strong>Дата завершения</strong>: {{ $freedom->enddate }}</p>
                 <p><strong>Количество нарушений</strong>: ? (тут число и ссылка если не ноль!)</p>                
                 @if ($freedom->info!="")

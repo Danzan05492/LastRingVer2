@@ -19,6 +19,7 @@ class CreateFreedomsTable extends Migration
             $table->integer('condemned_id')->unsigned();
             $table->text('info')->nullable();            
             $table->string('slug')->unique();
+            $table->dateTime('startdate', 0);
             $table->dateTime('enddate', 0);
         });
     }

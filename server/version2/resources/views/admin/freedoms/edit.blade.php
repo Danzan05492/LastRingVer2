@@ -28,6 +28,10 @@
                         <input class="form-control" name="slug" id="slug" value="{{ $freedom->slug }}">
                     </div>      
                     <div class="form-group">
+                      <label for="startdate">Дата начала</label>
+                      <input class="form-control" name="startdate" id="startdate" placeholder="Дата начала" value="{{ $freedom->startdate }}">
+                    </div> 
+                    <div class="form-group">
                       <label for="enddate">Дата завершения</label>
                       <input class="form-control" name="enddate" id="enddate" placeholder="Дата завершения" value="{{ $freedom->enddate }}">
                     </div>                

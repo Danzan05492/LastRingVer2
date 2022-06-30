@@ -29,7 +29,8 @@ class StoreFreedom extends FormRequest
             'condemned_id'=>'required|integer',
             'slug'=>'required',
             'info'=>'nullable|string',
-            'enddate'=>'required|date'            
+            'startdate'=>'required|date',
+            'enddate'=>'required|date'
         ];
     }
 }
