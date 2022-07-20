@@ -29,23 +29,21 @@ mix.styles([
 
 ],'public/assets/admin/css/admin.css');
 mix.scripts([
-    'resources/assets/admin/plugins/jquery/jquery.js',
-    'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.js',
-    'resources/assets/admin/plugins/jquery-ui/jquery-ui.js',
-    'resources/assets/admin/plugins/daterangepicker/daterangepicker.js',
-    'resources/assets/admin/plugins/bootstrap/js/bootstrap.js',    
-    //'resources/assets/admin/plugins/chart.js/Chart.min.js',
+    'resources/assets/admin/plugins/jquery/jquery.min.js',
+    'resources/assets/admin/plugins/jquery-ui/jquery-ui.min.js',
+    'resources/assets/admin/js/fix.js',
+    'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',    
+    'resources/assets/admin/plugins/chart.js/Chart.min.js',
     'resources/assets/admin/plugins/sparklines/sparkline.js',
-    'resources/assets/admin/plugins/jqvmap/jquery.vmap.min.js',
-    'resources/assets/admin/plugins/jqvmap/maps/jquery.vmap.usa.js',
+    'resources/assets/admin/plugins/jqvmap/jquery.vmap.min.js',    
+    'resources/assets/admin/plugins/jqvmap/maps/jquery.vmap.usa.js',    
     'resources/assets/admin/plugins/jquery-knob/jquery.knob.min.js',
     'resources/assets/admin/plugins/moment/moment.min.js',
+    'resources/assets/admin/plugins/daterangepicker/daterangepicker.js',
     'resources/assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
     'resources/assets/admin/plugins/summernote/summernote-bs4.min.js',
     'resources/assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js',
-    'resources/assets/admin/js/adminlte.js',
-    //'resources/assets/admin/js/demo.js',
-    'resources/assets/admin/js/pages/dashboard.js',
+    'resources/assets/admin/js/adminlte.js',    
 ],'public/assets/admin/js/admin.js');
 
 mix.copyDirectory('resources/assets/admin/plugins/fontawesome-free/webfonts','public/assets/admin/webfonts');
