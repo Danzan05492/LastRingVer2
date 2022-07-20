@@ -119,9 +119,12 @@
 <script src="{{ asset('assets/admin/js/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!--Admin LTE-->
 <script src="{{ asset('assets/admin/js/dist/adminlte.js') }}"></script>
-<!--Календарь-->
-<script src="{{ asset('assets/admin/js/plugins/fullcalendar/main.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('assets/admin/js/plugins/fullcalendar/main.css') }}">
+
+<!--Подгружаем скрипты если они есть-->
+@hasSection('scripts')
+   @yield('scripts')
+@endif
+
 
 </body>
 </html>

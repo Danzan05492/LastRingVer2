@@ -68,6 +68,11 @@
       <!-- /.card -->
     </div>
     <!-- /.col -->
-  </div>
-  
+  </div>  
+@endsection
+@section('scripts')
+<!--Календарь-->
+<script src="{{ asset('assets/admin/js/plugins/fullcalendar/main.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/admin/js/plugins/fullcalendar/main.css') }}">
+<script src="{{ asset('assets/admin/js/calendarLoader.js') }}"></script>
 @endsection
