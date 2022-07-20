@@ -26,15 +26,26 @@
                     <div class="form-group">
                         <label for="nick">Краткое название для дела</label>
                         <input class="form-control" name="slug" id="slug" value="{{ $freedom->slug }}">
-                    </div>      
+                    </div>     
                     <div class="form-group">
                       <label for="startdate">Дата начала</label>
-                      <input class="form-control" name="startdate" id="startdate" placeholder="Дата начала" value="{{ $freedom->startdate }}">
-                    </div> 
+                      <div class="input-group date dateField" id="startdate" data-target-input="nearest" >
+                          <input type="text" name="startdate" class="form-control datetimepicker-input" data-target="#startdate" value="{{ $freedom->startdate }}"/>
+                          <div class="input-group-append" data-target="#startdate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                    </div>  
                     <div class="form-group">
                       <label for="enddate">Дата завершения</label>
-                      <input class="form-control" name="enddate" id="enddate" placeholder="Дата завершения" value="{{ $freedom->enddate }}">
-                    </div>                
+                      <div class="input-group date dateField" id="enddate" data-target-input="nearest" >
+                          <input type="text" name="enddate" class="form-control datetimepicker-input" data-target="#enddate" value="{{ $freedom->enddate }}"/>
+                          <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                    </div>    
+                              
                 </div>    
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Обновить</button>
@@ -47,4 +58,12 @@
         @endif
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+$('.dateField').datetimepicker({
+  format: 'YYYY-MM-DD hh:mm ',
+  icons: { time: 'far fa-clock'}
+});
+</script>
 @endsection
