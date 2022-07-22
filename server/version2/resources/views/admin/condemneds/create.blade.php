@@ -21,20 +21,16 @@
                     <div class="form-group">
                         <label for="patronymic">Отчество</label>
                         <input class="form-control" name="patronymic" id="patronymic" placeholder="Отчество">
-                    </div>
+                    </div>                  
                     <div class="form-group">
-                        <label for="birthday">Дата рождения</label>
-                        <input class="form-control" name="birthday" id="birthday" placeholder="Дата рождения">
-                    </div>
-                    <div class="form-group">
-                      <label>Дата рождения:</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                    </div>
+                      <label for="birthday">Дата рождения</label>
+                      <div class="input-group date dateField" id="birthday" data-target-input="nearest" >
+                          <input type="text" name="birthday" class="form-control datetimepicker-input" data-target="#birthday" placeholder="Дата рождения"/>
+                          <div class="input-group-append" data-target="#birthday" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                    </div>                      
                     <div class="form-group">
                         <label>Пол</label>
                         <div class="form-check">
@@ -81,4 +77,12 @@
 
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+$('.dateField').datetimepicker({
+  format: 'YYYY-MM-DD',
+  icons: { time: 'far fa-clock'}
+});
+</script>
 @endsection

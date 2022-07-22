@@ -23,11 +23,16 @@
                     <div class="form-group">
                         <label for="patronymic">Отчество</label>
                         <input class="form-control" name="patronymic" id="patronymic" placeholder="Отчество" value="{{ $condemned->patronymic }}">
-                    </div>
+                    </div>                    
                     <div class="form-group">
-                        <label for="birthday">Дата рождения</label>
-                        <input class="form-control" name="birthday" id="birthday" placeholder="Дата рождения" value="{{ $condemned->birthday }}">
-                    </div>
+                      <label for="birthday">Дата рождения</label>
+                      <div class="input-group date dateField" id="birthday" data-target-input="nearest" >
+                          <input type="text" name="birthday" class="form-control datetimepicker-input" data-target="#birthday" value="{{ $condemned->birthday }}"/>
+                          <div class="input-group-append" data-target="#birthday" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                    </div> 
                     <div class="form-group">
                         <label>Пол</label>
                         <div class="form-check">
@@ -75,4 +80,12 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+$('.dateField').datetimepicker({
+  format: 'YYYY-MM-DD',
+  icons: { time: 'far fa-clock'}
+});
+</script>
 @endsection
