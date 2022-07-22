@@ -15,6 +15,12 @@ php artisan migrate:refresh - обновление базы
 php artisan db:seed - вытащить все данные из дефолтного сида
 php artisan migrate:refresh --seed - обновить миграции и вытащить сиды
 
+Валидация дат:
+https://www.magutti.com/blog/lavavel-date-validation
+
+Материалы по REST
+https://maxyc.ru/programming/laravel/restful-api-laravel/
+https://habr.com/ru/post/441946/
 --------------------- Вопросы
 ВАЖНО: как добавить дополнительный рут для ресурса? 
     https://stackoverflow.com/questions/16661292/add-new-methods-to-a-resource-controller-in-laravel   
