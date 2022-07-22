@@ -55,4 +55,11 @@ class Point extends Model
         }
         return date("d-m-Y",strtotime($result));
     }
+    /**
+     * Метод возвращает точки принадлежащие пользователю
+     * @return <Point>array
+     */
+    public static function userPoints(){
+        return Point::all();
+    }
 }
