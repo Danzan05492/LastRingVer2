@@ -25,8 +25,14 @@ class StorePoint extends FormRequest
     {
         return [
             'freedom_id'=>'required|integer',            
-            'startdate'=>'required|date',
-            'enddate'=>'required|date',
+            'startdate'=>[
+                'date',
+                'before:today'
+            ],
+            'enddate'=>[
+                'date',
+                'after:startdate'
+            ],
             'node_id'=>'required|integer',
             'status'=>'required|integer',
             'info'=>'nullable|string'
