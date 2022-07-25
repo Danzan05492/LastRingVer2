@@ -35,14 +35,21 @@
     $.ajax(
       '/api/points',
       {
-          success: function(data) {
-            console.log( new Date(y, m, 1));
+          success: function(data) {            
             var calendarEvents = [];
             for (key in data.data) { 
-              var v = data.data[key];
-              calendarEvents.push(JSON.stringify(v));
+              var v = data.data[key];              
+              var item={
+                title          : v.note_title,
+                start          : new Date(v.start),
+                backgroundColor: '#f56954', //red
+                borderColor    : '#f56954', //red
+                url            : v.url,
+                allDay         : true
+              };
+              calendarEvents.push(item);
             }
-            console.log(calendarEvents);            
+            
             
             var calendar = new Calendar(calendarEl, {
               headerToolbar: {
