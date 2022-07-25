@@ -5,7 +5,6 @@
         <div class="card-header">
           <h3 class="card-title">Добавить точку</h3>                    
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
             <div class="col-md-6 col-sm-12">
             <form action="{{ route('points.store') }}" method="POST">
@@ -18,27 +17,25 @@
                     </div>                  
                     <div class="form-group">
                         <label for="startdate">Дата начала</label>
-                        <input class="form-control @error('startdate') is-invalid @enderror" name="startdate" id="startdate" placeholder="Дата начала">
+                        <input class="form-control @error('startdate') is-invalid @enderror" name="startdate" id="startdate" placeholder="Дата начала" value="{{ old('startdate') }}">
                     </div>
                     <div class="form-group">
                         <label for="enddate">Дата завершения</label>
-                        <input class="form-control @error('enddate') is-invalid @enderror" name="enddate" id="enddate" placeholder="Дата завершения">
+                        <input class="form-control @error('enddate') is-invalid @enderror" name="enddate" id="enddate" placeholder="Дата завершения" value="{{ old('enddate') }}">
                     </div>
                     <div class="form-group">
                         <label>Выберите тип узла</label>
                         <select class="form-control" name="node_id">
                             @foreach($nodes as $node)
-                            <option value="{{ $node->id }}">{{ $node->title }}</option>
+                            <option value="{{ $node->id }}" @if(old('node_id')==$node->id) selected @endif>{{ $node->title }}</option>
                             @endforeach
                         </select>                        
                     </div>                                        
                     <div class="form-group">
                         <label for="info">Информация</label>
-                        <textarea class="form-control" id="info" name="info" rows="3" placeholder="Информация"></textarea>
+                        <textarea class="form-control" id="info" name="info" rows="3" placeholder="Информация">{{ old('info') }}</textarea>
                     </div>   
                 </div>
-                <!-- /.card-body -->
-
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
