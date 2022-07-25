@@ -56,7 +56,7 @@ class PointController extends Controller
             return view('admin.points.show',compact('point'));
         }
         else{
-            return redirect()->route('dashboard')->with('warning','Такой точки нет');
+            return redirect()->route('dashboard')->with('success','Такой точки нет');
         }
     }
 
