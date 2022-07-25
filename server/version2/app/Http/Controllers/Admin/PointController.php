@@ -51,7 +51,13 @@ class PointController extends Controller
      */
     public function show($id)
     {
-        //
+        $point=Point::find($id);        
+        if (is_object($point)){          
+            return view('admin.points.show',compact('point'));
+        }
+        else{
+            return redirect()->route('dashboard')->with('warning','Такой точки нет');
+        }
     }
 
     /**
