@@ -28,7 +28,7 @@ class StoreCondemned extends FormRequest
         return [
             'family'=>'required',
             'name'=>'required',
-            'illness_id'=>'integer',
+            'illness_id'=>'exists:App\Models\Illness,id',
             'gender'=>'required',
             'thumbnail'=>'nullable|image',
             'birthday'=>[
