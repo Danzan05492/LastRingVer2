@@ -14,6 +14,7 @@ class StoreCondemned extends FormRequest
     public function authorize()
     {
         //TODO - дописать проверку что она принадлежит
+        //Auth::user()->id??
         //https://laravel.com/docs/9.x/validation#form-request-validation
         return true;
     }
