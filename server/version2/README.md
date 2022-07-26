@@ -1,6 +1,5 @@
 ---------------------- Next
-Проверка на доступ к моделям (мб через middleware?)
-посмотреть что такое мутаторы
+Установка политик для всех моделей
 ----------------------TODO
 Софт удаление для Карточек?
 В методах типа edit/show и тд  передаётся id объекта, как проверять и перекидывать если такого объекта нет?
@@ -24,6 +23,12 @@ https://www.magutti.com/blog/lavavel-date-validation
 Материалы по REST
 https://maxyc.ru/programming/laravel/restful-api-laravel/
 https://habr.com/ru/post/441946/
+
+Проверка на доступ к моделям (через политики) 
+- Используем политики https://laravel.demiart.ru/laravel-policy/
+- Вешаем на ресурсы https://laracasts.com/discuss/channels/laravel/how-to-apply-policy-to-a-resource-controller?page=1
+    проблема этого метода в том, что он нормально не работает изза косяка ларавеля: https://github.com/laravel/framework/issues/32409
+    поэтому юзаем простую проверку в контроллере
 --------------------- Вопросы
 ВАЖНО: как добавить дополнительный рут для ресурса? 
     https://stackoverflow.com/questions/16661292/add-new-methods-to-a-resource-controller-in-laravel   
