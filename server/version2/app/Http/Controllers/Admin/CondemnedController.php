@@ -18,7 +18,7 @@ class CondemnedController extends Controller
      */
     public function index()
     {
-        $prisoners=Condemned::all();
+        $prisoners=Condemned::where('owner_id',Auth::user()->id)->get();
         return view('admin.condemneds.index',['prisoners'=>$prisoners]);
     }
 
@@ -56,8 +56,9 @@ class CondemnedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $condemned=Condemned::find($id);
+    {        
+        $condemned=Condemned::find($id);      
+        $this->authorize('update', $condemned); 
         $illnesses=Illness::pluck('title','id')->all();
         return view('admin.condemneds.edit',compact('condemned','illnesses'));
     }
@@ -72,6 +73,7 @@ class CondemnedController extends Controller
     public function update(StoreCondemned $request, $id)
     {        
         $condemned=Condemned::find($id);
+        $this->authorize('update', $condemned); 
         $data=$request->all();        
         $data['thumbnail']=Condemned::uploadImage($request,$condemned->thumbnail);             
         $condemned->update($data);
@@ -87,6 +89,7 @@ class CondemnedController extends Controller
     public function destroy($id)
     {
         $condemned=Condemned::find($id);
+        $this->authorize('delete', $condemned); 
         $condemned->delete();
         return redirect()->route('condemneds.index')->with('success','Запись удалена');
     }
