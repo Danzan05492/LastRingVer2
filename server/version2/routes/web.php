@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\IllnessController;
 use App\Http\Controllers\Admin\FreedomController;
 use App\Http\Controllers\Admin\NodeController;
 use App\Http\Controllers\Admin\PointController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/nodes',NodeController::class);
     Route::resource('/points',PointController::class);
 });
-
-
+//тест
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 require __DIR__.'/auth.php';
