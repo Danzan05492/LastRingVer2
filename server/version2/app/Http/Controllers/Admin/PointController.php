@@ -19,8 +19,9 @@ class PointController extends Controller
      */
     public function create()
     {
-        $freedom=Freedom::find($_GET['freedom_id']);        
-        if (is_object($freedom)){            
+        $freedom=Freedom::find($_GET['freedom_id']);
+        if (is_object($freedom)){    
+            $this->authorize('view', $freedom);         
             $nodes=Node::all();
             $default_status=Point::INPROGRESS;
             return view('admin.points.create',compact('freedom','nodes','default_status'));        
@@ -38,7 +39,9 @@ class PointController extends Controller
      */
     public function store(StorePoint $request)
     {
-        $data=$request->all();        
+        $data=$request->all();    
+        $freedom=Freedom::find($data['freedom_id']);  
+        $this->authorize('view', $freedom);  
         $point=Point::create($data);                
         return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка добавлена');
     }
@@ -52,6 +55,7 @@ class PointController extends Controller
     public function show($id)
     {
         $point=Point::find($id);        
+        $this->authorize('view', $point); 
         if (is_object($point)){          
             return view('admin.points.show',compact('point'));
         }
@@ -69,6 +73,7 @@ class PointController extends Controller
     public function edit($id)
     {
         $point=Point::find($id);
+        $this->authorize('update', $point);  
         $nodes=Node::all();
         return view('admin.points.edit',compact('point','nodes'));
     }
@@ -82,7 +87,8 @@ class PointController extends Controller
      */
     public function update(StorePoint $request, $id)
     {
-        $point=Point::find($id);              
+        $point=Point::find($id);    
+        $this->authorize('update', $point);            
         $point->update($request->all());
         return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка обновлена');
     }
@@ -95,7 +101,8 @@ class PointController extends Controller
      */
     public function destroy($id)
     {
-        $point=Point::find($id);                
+        $point=Point::find($id);        
+        $this->authorize('delete', $point);          
         $point->delete();
         return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка удалена');
     }
