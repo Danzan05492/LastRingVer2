@@ -9,6 +9,7 @@ use App\Models\Condemned;
 use App\Models\Point;
 use App\Http\Requests\StoreFreedom;
 use App\Models\CalendarSettings;
+use Illuminate\Support\Facades\Auth;
 
 class FreedomController extends Controller
 {
@@ -19,7 +20,8 @@ class FreedomController extends Controller
      */
     public function index()
     {
-        $freedoms=Freedom::all();
+        $condemneds=Condemned::where('owner_id',Auth::user()->id)->get()->pluck('id');        
+        $freedoms=Freedom::whereIn('condemned_id',$condemneds)->get();        
         return view('admin.freedoms.index',['freedoms'=>$freedoms]);
     }
  
@@ -30,7 +32,7 @@ class FreedomController extends Controller
      */
     public function create()
     {
-        $condemneds=Condemned::all();
+        $condemneds=Condemned::where('owner_id',Auth::user()->id)->get();
         return view('admin.freedoms.create',compact('condemneds'));        
     }
 
@@ -55,6 +57,7 @@ class FreedomController extends Controller
     public function show($id)
     {
         $freedom=Freedom::find($id);
+        $this->authorize('view', $freedom);
         if (is_object($freedom)){
             $condemned=$freedom->condemned;            
             $points=Point::where('freedom_id',$freedom->id)->orderBy('startdate')->orderByDesc('enddate')->get();
@@ -74,7 +77,8 @@ class FreedomController extends Controller
     public function edit($id)
     {
         $freedom=Freedom::find($id);
-        $condemneds=Condemned::all();
+        $this->authorize('update', $freedom); 
+        $condemneds=Condemned::where('owner_id',Auth::user()->id)->get();
         return view('admin.freedoms.edit',compact('freedom','condemneds'));
     }
 
@@ -87,7 +91,8 @@ class FreedomController extends Controller
      */
     public function update(StoreFreedom $request, $id)
     {
-        $freedom=Freedom::find($id);              
+        $freedom=Freedom::find($id);  
+        $this->authorize('update', $freedom);             
         $freedom->update($request->all());
         return redirect()->route('freedoms.index')->with('success','Запись обновлена');
     }
@@ -100,7 +105,8 @@ class FreedomController extends Controller
      */
     public function destroy($id)
     {
-        $freedom=freedom::find($id);                
+        $freedom=freedom::find($id);  
+        $this->authorize('delete', $freedom);               
         $freedom->delete();
         return redirect()->route('freedoms.index')->with('success','Запись удалена');
     }
@@ -112,6 +118,7 @@ class FreedomController extends Controller
      */
     public function calendarForm($id){
         $freedom=Freedom::find($id); 
+        $this->authorize('view', $freedom);
         if(is_object($freedom)){
             $condemned=$freedom->condemned;
             return view('admin.freedoms.calendar-form',compact('freedom','condemned'));
@@ -128,6 +135,7 @@ class FreedomController extends Controller
      */
     public function makeCalendar($id){
         $freedom=Freedom::find($id); 
+        $this->authorize('view', $freedom);
         if(is_object($freedom)){
             $cs=CalendarSettings::makeSettings($freedom);
             $points=$cs->points;
@@ -148,7 +156,8 @@ class FreedomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function calendarChangeStatus($freedom_id,$status){
-        $freedom=Freedom::find($freedom_id); 
+        $freedom=Freedom::find($freedom_id);
+        $this->authorize('view', $freedom); 
         if(is_object($freedom)){
             if (in_array($status,array(Freedom::EDITABLE,Freedom::LOCKED,Freedom::FINISHED))){
                 $freedom->status=$status;

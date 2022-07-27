@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\User;
+use App\Models\Freedom;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class FreedomPolicy
+{
+    use HandlesAuthorization;    
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function viewAny(User $user)
+    {        
+        return true;
+    }
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Freedom $freedom
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function view(User $user, Freedom $freedom)
+    {
+        return $freedom->condemned->owner_id==$user->id;
+    }
+    
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function create(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Freedom $freedom
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function update(User $user, Freedom $freedom)
+    {        
+        return $freedom->condemned->owner_id==$user->id;
+    }
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Freedom $freedom
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function delete(User $user, Freedom $freedom)
+    {
+        return $freedom->condemned->owner_id==$user->id;
+    }
+}
