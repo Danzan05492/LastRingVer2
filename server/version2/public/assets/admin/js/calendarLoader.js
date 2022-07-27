@@ -33,7 +33,7 @@
       }
     });
     $.ajax(
-      '/api/points',
+      '/admin/points/calendar-loader',
       {
           success: function(data) {            
             var calendarEvents = [];
