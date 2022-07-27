@@ -60,12 +60,14 @@ class Point extends Model
     }
     /**
      * Метод возвращает точки принадлежащие пользователю
+     * @param int id - идентификатор пользователя. Если не передан то пытается взять текущего пользователя
      * @return <Point>array
      */
-    public static function userPoints(){
+    public static function userPoints($user_id=""){
         $result=null;
-        //$user_id=Auth::user()->id - не работает так как вызывается в API!
-        $user_id=1;
+        if ($user_id==""){
+            $user_id=Auth::user()->id;
+        }
         $condemneds=Condemned::where('owner_id',$user_id)->get()->pluck('id');        
         if (count($condemneds)>0){
             $freedoms=array();

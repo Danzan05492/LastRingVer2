@@ -31,12 +31,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('/freedoms/calendar-form/{freedom}', [FreedomController::class,'calendarForm'])->name('freedoms.calendar-form');
     Route::get('/freedoms/make-calendar/{freedom}', [FreedomController::class,'makeCalendar'])->name('freedoms.make-calendar');
     Route::get('/freedoms/calendar-change-status/{freedom}/{status}', [FreedomController::class,'calendarChangeStatus'])->name('freedoms.calendar-change-status');
+    Route::get('/points/calendar-loader/', [PointController::class,'calendarLoader']);
     //Основные ресурсы
     Route::resource('/condemneds',CondemnedController::class);
     Route::resource('/illnesses',IllnessController::class);
     Route::resource('/freedoms',FreedomController::class);
     Route::resource('/nodes',NodeController::class);
     Route::resource('/points',PointController::class);
+    
 });
 //тест
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

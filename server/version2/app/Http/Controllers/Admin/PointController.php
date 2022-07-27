@@ -8,6 +8,7 @@ use App\Http\Requests\StorePoint;
 use App\Models\Freedom;
 use App\Models\Point;
 use App\Models\Node;
+use App\Http\Resources\PointResource;
 
 class PointController extends Controller
 {
@@ -105,5 +106,14 @@ class PointController extends Controller
         $this->authorize('delete', $point);          
         $point->delete();
         return redirect()->route('freedoms.show',['freedom'=>$point->freedom])->with('success','Точка удалена');
+    }
+    /**
+     * Метод для получения точек в календарь
+     * Метод возвращает точки для конкретного юзера    
+     * @return Array \Illuminate\Http\Response
+     */
+    public function calendarLoader(){
+        $points = Point::userPoints();
+        return PointResource::collection($points);  
     }
 }
