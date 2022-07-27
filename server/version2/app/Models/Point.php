@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Node;
 use App\Models\Freedom;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Condemned;
+
 class Point extends Model
 {
     use HasFactory;
@@ -60,6 +63,25 @@ class Point extends Model
      * @return <Point>array
      */
     public static function userPoints(){
-        return Point::all();
+        $result=null;
+        //$user_id=Auth::id()->id - не работает так как вызывается в API!
+        $user_id=1;
+        $condemneds=Condemned::where('owner_id',$user_id)->get()->pluck('id');        
+        if (count($condemneds)>0){
+            $freedoms=array();
+            foreach ($condemneds as $condemned){
+                $cases=Freedom::where([
+                    ['condemned_id',"=",$condemned],
+                    ['status',"=",Freedom::LOCKED]
+                ])->get();
+                foreach($cases as $case){
+                    $freedoms[]=$case->id;
+                }
+            }
+            if (count($freedoms)>0){
+                $result=Point::whereIn('freedom_id',$freedoms)->get();
+            }
+        }        
+        return $result;
     }
 }
