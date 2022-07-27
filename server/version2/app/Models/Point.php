@@ -64,7 +64,7 @@ class Point extends Model
      */
     public static function userPoints(){
         $result=null;
-        //$user_id=Auth::id()->id - не работает так как вызывается в API!
+        //$user_id=Auth::user()->id - не работает так как вызывается в API!
         $user_id=1;
         $condemneds=Condemned::where('owner_id',$user_id)->get()->pluck('id');        
         if (count($condemneds)>0){
