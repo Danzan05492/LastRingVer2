@@ -31,7 +31,7 @@ class StorePoint extends FormRequest
             ],
             'enddate'=>[
                 'date',
-                'after:startdate'
+                'after_or_equal:startdate'
             ],
             'node_id'=>'required|integer',
             'status'=>'required|integer',
