@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\IllnessController;
 use App\Http\Controllers\Admin\FreedomController;
 use App\Http\Controllers\Admin\NodeController;
 use App\Http\Controllers\Admin\PointController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('/points/calendar-loader/', [PointController::class,'calendarLoader']);
     //Основные ресурсы
     Route::resource('/condemneds',CondemnedController::class);
-    Route::resource('/illnesses',IllnessController::class);
+    Route::resource('/illnesses',IllnessController::class)->middleware('myadmin');
     Route::resource('/freedoms',FreedomController::class);
-    Route::resource('/nodes',NodeController::class);
+    Route::resource('/nodes',NodeController::class)->middleware('myadmin');
     Route::resource('/points',PointController::class);
+    Route::resource('/users',UserController::class)->middleware('myadmin');
     
 });
 //тест
