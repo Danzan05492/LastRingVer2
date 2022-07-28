@@ -22,7 +22,8 @@ class ZeroDataSeeder extends Seeder
         User::create(array(
             'name'=>'Коровов',
             'email'=>'cow@bsu.ru',
-            'password'=>Hash::make('12345678')
+            'password'=>Hash::make('12345678'),
+            'user_status'=>1
         ));
         //Справочник болезней
         Illness::create(array(
