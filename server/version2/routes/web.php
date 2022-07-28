@@ -34,16 +34,13 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('/freedoms/calendar-change-status/{freedom}/{status}', [FreedomController::class,'calendarChangeStatus'])->name('freedoms.calendar-change-status');
     Route::get('/points/calendar-loader/', [PointController::class,'calendarLoader']);
     //Основные ресурсы
-    Route::resource('/condemneds',CondemnedController::class);
-    Route::resource('/illnesses',IllnessController::class)->middleware('myadmin');
-    Route::resource('/freedoms',FreedomController::class);
-    Route::resource('/nodes',NodeController::class)->middleware('myadmin');
+    Route::resource('/condemneds',CondemnedController::class);    
+    Route::resource('/freedoms',FreedomController::class);    
     Route::resource('/points',PointController::class);
+    Route::resource('/nodes',NodeController::class)->middleware('myadmin');
+    Route::resource('/illnesses',IllnessController::class)->middleware('myadmin');
     Route::resource('/users',UserController::class)->middleware('myadmin');
     
 });
-//тест
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 require __DIR__.'/auth.php';

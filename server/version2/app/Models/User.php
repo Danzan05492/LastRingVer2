@@ -15,7 +15,14 @@ class User extends Authenticatable
      * Статусы пользователей
      */
     const INSPECTOR=0;//Обычный пользователь
-    const ADMIN=1;//Администратор    
+    const ADMIN=1;//Администратор  
+    /**
+     * Массив статусов пользователей
+     */  
+    public static $user_roles=[
+        0 => "Инспектор",
+        1 => "Администратор"
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -51,5 +58,5 @@ class User extends Authenticatable
      */
     public function is_admin(){
         return $this->user_status==User::ADMIN;
-    }
+    }    
 }

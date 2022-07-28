@@ -46,9 +46,11 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        /**
+         * Правим старую регистрацию
+         * Auth::login($user);
+         * return redirect(RouteServiceProvider::HOME);
+         */
+        return redirect()->route('users.index')->with('success','Пользователь зарегистрирован');
     }
 }
