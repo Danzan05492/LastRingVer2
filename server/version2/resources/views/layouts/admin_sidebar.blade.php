@@ -57,13 +57,12 @@
             </ul>
           </li>
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ">
+            <a href="{{ route('users.index') }}" class="nav-link @if (request()->routeIs('users.index')) active @endif">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Пользователи                
+                Пользователи                  
               </p>
-            </a>
-            
+            </a>            
           </li>
         @else
         @endif  
