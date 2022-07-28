@@ -11,7 +11,11 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    /**
+     * Статусы пользователей
+     */
+    const INSPECTOR=0;//Обычный пользователь
+    const ADMIN=1;//Администратор    
     /**
      * The attributes that are mass assignable.
      *
@@ -41,4 +45,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * Метод вернёт true, если пользователь является администратором
+     * @return boolean
+     */
+    public function is_admin(){
+        return $this->user_status==User::ADMIN;
+    }
 }
