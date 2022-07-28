@@ -20,6 +20,14 @@ php artisan migrate:refresh - обновление базы
 php artisan db:seed - вытащить все данные из дефолтного сида
 php artisan migrate:refresh --seed - обновить миграции и вытащить сиды
 
+добавить поле в таблицу:
+php artisan make:migration alter_table_users --table=users
+
+-- Middleware
+    php artisan make:middleware AdminMiddleware
+    регистрируем в файле Kernel ($routeMiddleware)
+
+
 Валидация дат:
 https://www.magutti.com/blog/lavavel-date-validation
 
