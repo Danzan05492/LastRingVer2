@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\NodeController;
 use App\Http\Controllers\Admin\PointController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +47,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     
 });
 
+
 require __DIR__.'/auth.php';
+require __DIR__.'/mobileAuth.php';
