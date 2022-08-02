@@ -42,6 +42,9 @@ https://habr.com/ru/post/441946/
     поэтому юзаем простую проверку в контроллере
 
 Для внутренних запросов AJAX проще сделать метод и воспользоваться Ресурсами которые генерируются для API
+
+-Аутентификация мобилы
+    Для аутентификации через мобильное приложение нужно отключить csrf для конкретного маршрута sanctum (app/Http/Middleware/VerifyCsrfToken.php): https://themewp.inform.click/autentifikacija-mobilnogo-prilozhenija-s-ispolzovaniem-tokena-v-laravel/
 --------------------- Вопросы
 ВАЖНО: как добавить дополнительный рут для ресурса? 
     https://stackoverflow.com/questions/16661292/add-new-methods-to-a-resource-controller-in-laravel   
