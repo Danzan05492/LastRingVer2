@@ -9,9 +9,9 @@ use App\Http\Resources\CondemnedResource;
 
 class CondemnedApiController extends Controller
 {
-    public function index()
-    {   
-        $condemneds = Condemned::all();//!!Заглушка тут нужно брать токен и смотреть id юзера
-        return CondemnedResource::collection($condemneds);        
+    public function index(Request $request)
+    {           
+        $condemneds = Condemned::where('owner_id',$request->user()->id)->get();
+        return CondemnedResource::collection($condemneds);
     }
 }
