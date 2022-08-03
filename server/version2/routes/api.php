@@ -15,10 +15,12 @@ use App\Http\Controllers\Api\CondemnedApiController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 //RestAPI
-Route::get('points', [PointApiController::class, 'index']);
-Route::get('condemneds', [CondemnedApiController::class, 'index']);
+Route::group(['middleware'=>'auth:sanctum'],function(){
+    Route::get('points', [PointApiController::class, 'index']);
+    Route::get('condemneds', [CondemnedApiController::class, 'index']);
+});
