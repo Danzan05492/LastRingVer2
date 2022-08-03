@@ -1,6 +1,5 @@
 
-GET http://condemned.local/api/user HTTP/1.1
+GET http://condemned.local/api/condemneds HTTP/1.1
 content-type: application/json
-Authorization: Bearer Bearer 15|9i0Z87rfIca8pEbOeI3Lm2AzMVJvDO2k6g8gVxBM
+Authorization: Bearer 32|DmSaWVrKqy9bWmtGVbfrnOrr6Aef4jnErlrXqDPl
     
-
