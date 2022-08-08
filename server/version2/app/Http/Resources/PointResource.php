@@ -17,6 +17,7 @@ class PointResource extends JsonResource
         $condemned=$this->freedom->condemned;
         return [
             'point_id'=>$this->id,
+            'updated_at'=>$this->updated_at,
             'freedom_id'=>$this->freedom->id,
             'node_id'=>$this->node->id,
             'status'=>$this->status,

@@ -16,6 +16,7 @@ class CondemnedResource extends JsonResource
     {
         return [
             'condemned_id'=>$this->id,
+            'updated_at'=>$this->updated_at,
             'family'=>$this->family,
             'name'=>$this->name,
             'patronymic'=>$this->patronymic,
