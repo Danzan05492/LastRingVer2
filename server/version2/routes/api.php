@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PointApiController;
 use App\Http\Controllers\Api\CondemnedApiController;
+use App\Http\Controllers\Api\FreedomApiController;
+use App\Http\Controllers\Api\NodeApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::get('points', [PointApiController::class, 'index']);
     Route::get('condemneds', [CondemnedApiController::class, 'index']);
+    Route::get('freedoms', [FreedomApiController::class, 'index']);
+    Route::get('nodes', [NodeApiController::class, 'index']);
 });

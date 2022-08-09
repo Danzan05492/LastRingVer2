@@ -22,4 +22,27 @@ class Freedom extends Model
     public function canEdit(){
         return $this->status==self::EDITABLE;
     }
+    /**
+     * Метод возвращает дела принадлежащие пользователю
+     * @param int id - идентификатор пользователя. Если не передан то пытается взять текущего пользователя
+     * @return <Freedom>Array
+     */
+    public static function userFreedoms($user_id=""){        
+        if ($user_id==""){
+            $user_id=Auth::user()->id;
+        }
+        $condemneds=Condemned::where('owner_id',$user_id)->get()->pluck('id');        
+        $freedoms=array();
+        if (count($condemneds)>0){            
+            foreach ($condemneds as $condemned){
+                $cases=Freedom::where([
+                    ['condemned_id',"=",$condemned]                    
+                ])->get();
+                foreach($cases as $case){
+                    $freedoms[]=$case;
+                }
+            }            
+        }        
+        return $freedoms;
+    }
 }
