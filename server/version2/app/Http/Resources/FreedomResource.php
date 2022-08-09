@@ -17,10 +17,10 @@ class FreedomResource extends JsonResource
         return [
             'freedom_id'=>$this->id,
             'updated_at'=>$this->updated_at,
-            'condemed_id'=>$this->condemned_id,
+            'condemned_id'=>$this->condemned_id,
             'info'=>$this->info,
             'slug'=>$this->slug,
-            'enddate'=>$this->enddate            
+            'enddate'=>$this->enddate
         ];
     }
 }

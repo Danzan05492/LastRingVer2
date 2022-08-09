@@ -21,7 +21,10 @@ class PointResource extends JsonResource
             'freedom_id'=>$this->freedom->id,
             'node_id'=>$this->node->id,
             'status'=>$this->status,
-            'note_title'=>$this->node->title."(".$condemned->family.")",
+            'node_title'=>$this->node->title."(".$condemned->family.")",
+            'startdate'=>$this->startdate,
+            'enddate'=>$this->enddate,
+            'info'=>$this->info,
             //Данные для календаря
             'title'=>$this->node->title,
             'start'=>date('D M d Y H:i:s O', strtotime($this->startdate)),                        
