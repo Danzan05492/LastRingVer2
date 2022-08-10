@@ -20,7 +20,8 @@ class FreedomResource extends JsonResource
             'condemned_id'=>$this->condemned_id,
             'info'=>$this->info,
             'slug'=>$this->slug,
-            'enddate'=>$this->enddate
+            'enddate'=>$this->enddate,
+            'status'=>$this->status,
         ];
     }
 }
