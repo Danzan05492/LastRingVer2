@@ -1,0 +1,6 @@
+
+PUT http://condemned.local/api/points/update/3 HTTP/1.1
+content-type: application/json
+Authorization: Bearer 45|sbGPieTlt5tbk81SywGAXeuiPUcJMrIbCDK3lFS7
+
+{"updated_at":"2022-08-15T08:57:53.322","freedom_id":2,"startdate":"2022-03-08 00:00:00","enddate":"2022-03-08 00:30:00","node_id":7,"status":2,"info":"null"}
