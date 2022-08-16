@@ -28,4 +28,5 @@ Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::get('freedoms', [FreedomApiController::class, 'index']);
     Route::get('nodes', [NodeApiController::class, 'index']);
     Route::put('points/update/{id}',[PointApiController::class,'update']); 
+    Route::put('points/updateAll/',[PointApiController::class,'updateAll']); 
 });
