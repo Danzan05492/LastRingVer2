@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Point;
 use App\Http\Resources\PointResource;
+use Illuminate\Support\Facades\Gate;
 
 class PointApiController extends Controller
 {
@@ -30,5 +31,23 @@ class PointApiController extends Controller
         $point->update($request->all());        
         return "SUCCESS";
     }
-    
+    /**
+     * Метод получает несколько точек из приложения и обновляет 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return string[] -  массив строка с результатом
+     */
+    public function updateAll(Request $request){
+        $result=array();
+        foreach ($request->points as $item){
+            $point=Point::find($item["id"]);   
+            $status="DENIED";
+            if (Gate::allows('update',$point)){
+                $point->update($item); 
+                $status="OK";
+            }
+            array_push($result,array("id"=>$item["id"],"status"=>$status));                
+        }
+        return $result;
+    }
 }
