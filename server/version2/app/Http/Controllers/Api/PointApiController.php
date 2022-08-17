@@ -48,6 +48,6 @@ class PointApiController extends Controller
             }
             array_push($result,array("id"=>$item["id"],"status"=>$status));                
         }
-        return $result;
+        return array("data"=>$result);
     }
 }
