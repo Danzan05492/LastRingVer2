@@ -24,15 +24,24 @@ class UpdateController extends Controller
      */
     public function getAll(Request $request,$lastDate)
     {
+        if ($lastDate=="newLoad"){
+            $lastDate="";
+        }
         $points = Point::userPoints($request->user()->id,$lastDate);
-        $points_collection = PointResource::collection($points);
-        $nodes = Node::where('updated_at','>',$lastDate)->get();
-        $nodes_collection = NodeResource::collection($nodes);
+        $points_collection = PointResource::collection($points);        
         $freedoms = Freedom::userFreedoms($request->user()->id,$lastDate);
         $freedoms_collection=FreedomResource::collection($freedoms);
-        $condemneds = Condemned::where('owner_id',$request->user()->id)->where('updated_at','>',$lastDate)->get();
+        if ($lastDate==""){
+            $nodes = Node::get();
+            $condemneds = Condemned::where('owner_id',$request->user()->id)->get();    
+        }
+        else{
+            $nodes = Node::where('updated_at','>',$lastDate)->get();
+            $condemneds = Condemned::where('owner_id',$request->user()->id)->where('updated_at','>',$lastDate)->get();
+        }        
+        $nodes_collection = NodeResource::collection($nodes);        
         $condemneds_collection=CondemnedResource::collection($condemneds);
-        $data_arr=array("condemneds"=>$condemneds_collection,"freedoms"=>$freedoms_collection,"points"=>$points_collection);   
+        $data_arr=array("condemneds"=>$condemneds_collection,"freedoms"=>$freedoms_collection,"points"=>$points_collection,"nodes"=>$nodes_collection);   
         return $data_arr;     
     }
 }
