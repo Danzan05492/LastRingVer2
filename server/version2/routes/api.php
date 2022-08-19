@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PointApiController;
 use App\Http\Controllers\Api\CondemnedApiController;
 use App\Http\Controllers\Api\FreedomApiController;
 use App\Http\Controllers\Api\NodeApiController;
+use App\Http\Controllers\Api\UpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,5 @@ Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::get('nodes', [NodeApiController::class, 'index']);
     Route::put('points/update/{id}',[PointApiController::class,'update']); 
     Route::put('points/updateAll/',[PointApiController::class,'updateAll']); 
+    Route::get('update/getAll/{lastUpdate}',[UpdateController::class,'getAll']); 
 });
