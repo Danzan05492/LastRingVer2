@@ -18,13 +18,13 @@ use App\Http\Resources\CondemnedResource;
 class UpdateController extends Controller
 {
     /**
-     * Метод возвращает объекты обновлённые после полученной даты
+     * Метод возвращает объекты обновлённые после полученной даты, если дата отсутствует, то отдаём все данные
      * @param DateTime lastDate - дата/время последнего обновления
      * @return JSONArray - массив с данными
      */
     public function getAll(Request $request,$lastDate)
     {
-        if ($lastDate=="newLoad"){
+        if ($lastDate=="newLoad"){//первая загрузка данных!
             $lastDate="";
         }
         $points = Point::userPoints($request->user()->id,$lastDate);
