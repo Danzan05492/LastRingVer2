@@ -25,9 +25,10 @@ class Freedom extends Model
     /**
      * Метод возвращает дела принадлежащие пользователю
      * @param int id - идентификатор пользователя. Если не передан то пытается взять текущего пользователя
+     * @param DateTime lastDate - дата последнего обновления
      * @return <Freedom>Array
      */
-    public static function userFreedoms($user_id=""){        
+    public static function userFreedoms($user_id="",$lastDate=""){        
         if ($user_id==""){
             $user_id=Auth::user()->id;
         }
@@ -35,9 +36,12 @@ class Freedom extends Model
         $freedoms=array();
         if (count($condemneds)>0){            
             foreach ($condemneds as $condemned){
-                $cases=Freedom::where([
-                    ['condemned_id',"=",$condemned]                    
-                ])->get();
+                if ($lastDate==""){
+                    $cases=Freedom::where([['condemned_id',"=",$condemned]])->get();
+                }
+                else{
+                    $cases=Freedom::where([['condemned_id',"=",$condemned]])->where('updated_at','>',$lastDate)->get();
+                }
                 foreach($cases as $case){
                     $freedoms[]=$case;
                 }

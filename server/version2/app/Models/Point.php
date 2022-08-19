@@ -61,9 +61,10 @@ class Point extends Model
     /**
      * Метод возвращает точки принадлежащие пользователю
      * @param int id - идентификатор пользователя. Если не передан то пытается взять текущего пользователя
+     * @param DateTime lastDate - дата последнего обновления, по умолчанию пустая
      * @return <Point>array
      */
-    public static function userPoints($user_id=""){
+    public static function userPoints($user_id="",$lastDate=""){
         $result=null;
         if ($user_id==""){
             $user_id=Auth::user()->id;
@@ -81,7 +82,12 @@ class Point extends Model
                 }
             }
             if (count($freedoms)>0){
-                $result=Point::whereIn('freedom_id',$freedoms)->get();
+                if ($lastDate==""){
+                    $result=Point::whereIn('freedom_id',$freedoms)->get();
+                }
+                else{
+                    $result=Point::whereIn('freedom_id',$freedoms)->where('updated_at','>',$lastDate)->get();
+                }                    
             }
         }        
         return $result;
