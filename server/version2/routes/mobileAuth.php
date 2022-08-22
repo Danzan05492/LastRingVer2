@@ -20,6 +20,8 @@ Route::post('/sanctum/token', function (Request $request) {
         'device_name' => 'required',
     ]);
     $user = User::where('email', $request->email)->first();
+    //удалим существующие
+    $user->tokens()->where('name',$request->device_name)->delete();
     if (! $user || ! Hash::check($request->password, $user->password)) {
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorrect.'],
