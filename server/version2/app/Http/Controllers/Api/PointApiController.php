@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Point;
-use App\Http\Resources\PointResource;
+use App\Models\Freedom;
 use Illuminate\Support\Facades\Gate;
 
 class PointApiController extends Controller
@@ -29,7 +29,19 @@ class PointApiController extends Controller
         //ТУТ проверять что мы можем обновлять только свои точки
         $this->authorize('update', $point);            
         $point->update($request->all());        
-        return "SUCCESS";
+        return array("status"=>"SUCCESS");    
+    }
+    /**
+     * Метод получает точку из приложения и обновляет их
+     * @param  \Illuminate\Http\Request  $request     
+     * @return JSON - строка с результатом
+     */
+    public function insert(Request $request){
+        $data=$request->all();  
+        $freedom=Freedom::find($data['freedom_id']);  
+        $this->authorize('view', $freedom);  
+        $point=Point::create($data);         
+        return array("status"=>"SUCCESS","server_id"=>$point->id);
     }
     /**
      * Метод получает несколько точек из приложения и обновляет 
