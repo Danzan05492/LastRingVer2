@@ -1,5 +1,5 @@
-PUT http://condemned.local/api/points/update/3 HTTP/1.1
+PUT http://condemned.local/api/points/insert HTTP/1.1
 content-type: application/json
-Authorization: Bearer 45|sbGPieTlt5tbk81SywGAXeuiPUcJMrIbCDK3lFS7
+Authorization: Bearer 61|OTNXivRbM0NrNF2JpN7hixX6W3vmDA94Da26z2aK
 
-{"updated_at":"2022-08-15T08:57:53.322","freedom_id":2,"startdate":"2022-03-08 00:00:00","enddate":"2022-03-08 00:30:00","node_id":7,"status":2,"info":"null"}
+{"id":0,"updated_at":"2022-08-24T12:47:07.452","freedom_id":1,"startdate":"2022-11-12 00:00:00","enddate":"2023-12-12 00:00:00","node_id":1,"status":3,"info":""}
