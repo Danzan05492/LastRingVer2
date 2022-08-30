@@ -52,13 +52,26 @@ class PointApiController extends Controller
     public function updateAll(Request $request){
         $result=array();
         foreach ($request->points as $item){
-            $point=Point::find($item["id"]);   
-            $status="DENIED";
-            if (Gate::allows('update',$point)){
-                $point->update($item); 
-                $status="OK";
+            if ($item["id"]!=0){//редактирование точки
+                $point=Point::find($item["id"]);   
+                $status="DENIED";
+                if (Gate::allows('update',$point)){
+                    $point->update($item); 
+                    $status="OK";
+                }
+                array_push($result,array("id"=>$item["app_id"],"status"=>$status,"operation"=>"update"));                
             }
-            array_push($result,array("id"=>$item["id"],"status"=>$status));                
+            else{//вставка точки
+                $freedom=Freedom::find($item["freedom_id"]);
+                $status="DENIED";
+                $id=0;
+                if (Gate::allows('view',$freedom)){
+                    $point=Point::create($item);  
+                    $status="OK";
+                    $id=$point->id;
+                }
+                array_push($result,array("id"=>$item["app_id"],"server_id"=>$id,"status"=>$status,"operation"=>"insert"));                
+            }
         }
         return array("data"=>$result);
     }
