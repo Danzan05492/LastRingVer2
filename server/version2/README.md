@@ -19,6 +19,7 @@ php artisan make:model Note -m  - Модель и миграция
 php artisan migrate:refresh - обновление базы
 php artisan db:seed - вытащить все данные из дефолтного сида
 php artisan migrate:refresh --seed - обновить миграции и вытащить сиды
+php artisan make:policy PostPolicy --model=Post - создание политики
 
 добавить поле в таблицу:
 php artisan make:migration alter_table_users --table=users
@@ -40,6 +41,8 @@ https://habr.com/ru/post/441946/
 - Вешаем на ресурсы https://laracasts.com/discuss/channels/laravel/how-to-apply-policy-to-a-resource-controller?page=1
     проблема этого метода в том, что он нормально не работает изза косяка ларавеля: https://github.com/laravel/framework/issues/32409
     поэтому юзаем простую проверку в контроллере
+Если политика не даёт заходить то явно указываем класс:
+https://stackoverflow.com/questions/66071720/policies-always-results-in-this-action-is-unauthorized
 
 Для внутренних запросов AJAX проще сделать метод и воспользоваться Ресурсами которые генерируются для API
 
