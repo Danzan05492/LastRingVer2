@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FreedomPolicy
 {
-    use HandlesAuthorization;    
+    use HandlesAuthorization;
     /**
      * Determine whether the user can view any models.
      *
@@ -16,7 +16,7 @@ class FreedomPolicy
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
-    {        
+    {
         return true;
     }
     /**
@@ -30,7 +30,7 @@ class FreedomPolicy
     {
         return $freedom->condemned->owner_id==$user->id;
     }
-    
+
     /**
      * Determine whether the user can create models.
      *
@@ -50,7 +50,7 @@ class FreedomPolicy
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, Freedom $freedom)
-    {        
+    {
         return $freedom->condemned->owner_id==$user->id;
     }
     /**

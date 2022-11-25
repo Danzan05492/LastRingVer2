@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Node;
 use App\Http\Requests\StoreNode;
 
-class NodeController extends Controller
+class  NodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,7 +40,7 @@ class NodeController extends Controller
      */
     public function store(StoreNode $request)
     {
-        Node::create($request->all());           
+        Node::create($request->all());
         return redirect()->route('nodes.index')->with('success','Узел добавлен');
     }
 
@@ -63,8 +63,8 @@ class NodeController extends Controller
      */
     public function edit($id)
     {
-        $node=Node::find($id);      
-        $types=Node::getTypes();  
+        $node=Node::find($id);
+        $types=Node::getTypes();
         return view('admin.nodes.edit',compact('node','types'));
     }
 
@@ -77,7 +77,7 @@ class NodeController extends Controller
      */
     public function update(StoreNode $request, $id)
     {
-        $node=Node::find($id);           
+        $node=Node::find($id);
         $node->update($request->all());
         return redirect()->route('nodes.index')->with('success','Узел обновлена');
     }
@@ -90,7 +90,7 @@ class NodeController extends Controller
      */
     public function destroy($id)
     {
-        $node=Node::find($id);                
+        $node=Node::find($id);
         $node->delete();
         return redirect()->route('nodes.index')->with('success','Узел удалён');
     }

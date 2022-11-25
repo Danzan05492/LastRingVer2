@@ -2,7 +2,7 @@
 
     /* initialize the external events
      -----------------------------------------------------------------*/
-    
+
     /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
@@ -35,22 +35,22 @@
     $.ajax(
       '/admin/points/calendar-loader',
       {
-          success: function(data) {            
+          success: function(data) {
             var calendarEvents = [];
-            for (key in data.data) { 
-              var v = data.data[key];              
+            for (key in data.data) {
+              var v = data.data[key];
               var item={
                 title          : v.note_title,
                 start          : new Date(v.start),
-                backgroundColor: '#f56954', //red
-                borderColor    : '#f56954', //red
+                backgroundColor: '#21977b', //red
+                borderColor    : '#074bd2', //red
                 url            : v.url,
                 allDay         : true
               };
               calendarEvents.push(item);
             }
-            
-            
+
+
             var calendar = new Calendar(calendarEl, {
               headerToolbar: {
                 left  : 'prev,next today',
@@ -70,10 +70,10 @@
                 }
               }
             });
-        
+
             calendar.render();
             // $('#calendar').fullCalendar()
-        
+
             /* ADDING EVENTS */
             var currColor = '#3c8dbc' //Red by default
             // Color chooser button
@@ -94,7 +94,7 @@
               if (val.length == 0) {
                 return
               }
-        
+
               // Create events
               var event = $('<div />')
               event.css({
@@ -104,10 +104,10 @@
               }).addClass('external-event')
               event.text(val)
               $('#external-events').prepend(event)
-        
+
               // Add draggable funtionality
               ini_events(event)
-        
+
               // Remove event from text input
               $('#new-event').val('')
             })
@@ -117,10 +117,10 @@
           }
        }
     );
-    
+
   })
 /**
- * 
+ *
  * {
                   title          : 'Весь день',
                   start          : new Date(y, m, 1),
